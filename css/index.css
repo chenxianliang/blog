@@ -1,11 +1,33 @@
+ul{
+	margin: 0;
+	padding: 0;
+	list-style:none;
+}
+img{
+	vertical-align: top;
+	border:none;
+}
 .wrap{
 	width:960px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
+.clearfix:after{
+	clear:both;
+	display: block;
+	content:"";
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+
 body{
-	height:2000px;
+	background:url(../images/background.jpg) no-repeat 50% 0;
+	background-size:cover;
 	transition:.7s;
 }
 body.side-active{
@@ -31,4 +53,201 @@ body.side-active{
 	left:-200px;
 	height:100%;
 	background:#222;
+}
+
+.main{
+	padding-top:51px;
+	color:#ccc;
+	font-family: "微软雅黑";
+}
+/*首页文章列表*/
+.article-item{
+	padding:1px 10px 1px 15px;
+	margin:20px 0;
+	height:160px;
+	overflow: hidden;
+	background:rgba(0,0,0,.5);
+	border-radius:4px;
+}
+.article-info{
+	padding-top:10px;
+}
+.article-img{
+	border:1px solid #f1f1f1;
+	box-shadow: 0px 0px 5px #f1f1f1;
+}
+.article-post{
+	width:475px;
+}
+.article-txt{
+	font-size:14px;
+	line-height: 20px;
+	text-indent: 2em;
+	height:70px;
+	overflow: hidden;
+	margin: 0;
+}
+
+.article-author{
+	text-align: right;
+	margin-top: 5px;
+}
+.article-pre{
+	color:#999;
+}
+
+.article-name{
+	padding: 0 15px 0 8px;
+}
+
+.article-pager{
+	height:46px;
+	line-height: 46px;
+	color:#f1f1f1;
+	font-size:14px;
+	text-align: right;
+}
+.article-pager a ,.article-pager span{
+	padding: 10px;
+}
+
+
+
+
+.right-part{
+	background:rgba(0,0,0,.5);
+	padding:1px 8px 10px 8px;
+	border-radius:4px;
+	margin: 20px 0;
+	color:#ccc;
+}
+.right-part-title{
+	font-size: 18px;
+	line-height: 38px;
+	border-bottom:1px dashed #ccc;
+	
+}
+.right-part .count li{
+	line-height: 24px;
+}
+.right-part .message-item{
+	border-bottom:1px dashed #333;
+	margin: 10px 0;
+}
+.right-part .message-item:last-of-type{
+	border:none;
+}
+
+.right-part .message-authar{
+	color:#999;
+	font-size:12px;
+}
+
+.right-part .message-info{
+	line-height: 24px;
+	font-size: 14px;
+	margin: 10px 0;
+}
+
+
+
+
+.link{
+	font-size:14px;
+	line-height: 20px;
+	color:#ccc;
+	padding-left:20px;
+	margin-top:30px;
+	margin-bottom: 20px;
+}
+.link a{
+	padding:8px;
+	color:#ccc;
+}
+
+
+
+
+
+
+
+footer{
+	height:40px;
+	line-height: 40px;
+	text-align: center;
+	color:#f1f1f1;
+	margin-bottom: 20px;
+}
+
+/* 阅读页 css */
+.post,.comment-add,.comment-list{
+	background:rgba(255,255,255,.75);
+	border-radius: 4px;
+	padding: 5px 15px 10px;
+	margin: 20px 0 0;
+	color:#000;
+}
+
+.post{
+	
+}
+.post-title{
+	font-size:20px;
+	line-height: 28px;
+	padding: 0 10px;
+} 
+.post-author{
+	font-size: 12px;
+	color:#333;
+	text-align: right;
+}
+.post-content{
+	padding: 20px 0;
+}
+.post-content p{
+	font-size: 14px;
+	line-height: 24px;
+	text-indent: 2em;
+}
+.share{
+	text-align: right;
+}
+
+.share-qq{
+	padding: 0 10px 0 0;
+}
+
+.comment-title{
+	font-size: 20px;
+	line-height: 40px;
+	margin: 0;
+}
+.comment-add-txt{
+	width:580px;
+	padding: 10px;
+	height:150px;
+	overflow: auto;
+	resize:none;
+	border-radius:3px;
+}
+
+.comment-list-item{
+	padding: 15px;
+	border-radius:4px;
+	background:rgba(0,0,0,.1);
+	color:#111;
+	margin-bottom: 15px;
+}
+
+.comment-author{
+	font-size: 12px;
+	color:#555;
+}
+.comment-list-info{
+	font-size: 14px;
+	line-height: 24px;
+}
+
+.comment-replay a{
+	color:#ef252a;
 }
