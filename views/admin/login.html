@@ -1,0 +1,31 @@
+<%- include ../header.html %>
+    <div class="container login-wrap">
+    <form action="/login" class="form-signin" role="form" method="post">
+        <h2 class="form-signin-heading">用户登录</h2>
+        <input type="text" class="form-control" name="name" placeholder="请输入用户名" required autofocus>
+        <div style="height:10px;clear:both;display:block"></div>
+        <input type="password" class="form-control" name="password" placeholder="请输入密码" required>
+        <div style="height:10px;clear:both;display:block"></div>
+        <div class="row code">
+            <label for="" class="code-label">验证码</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control code-txt" placeholder="请输入验证码">
+                <img src="dd" alt="" class="code-img">
+            </div>
+        </div>
+        <!-- /*
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me">记住登录状态
+            </label>
+        </div>
+        -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+</div>
+<script>
+    <%  if(error){%>
+        alert('登录失败：<%= error %>' ); 
+    <%} %>
+</script>
+<%- include ../footer.html %>

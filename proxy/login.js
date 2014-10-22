@@ -1,0 +1,44 @@
+var crypto = require('crypto'),
+    User = require('../models/user');
+
+exports.loginShow = function(req, res) {
+    res.render('admin/login.html', {
+        title: '用户登录',
+        user: req.session.user,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString()
+    });
+}
+
+exports.loginAction = function(req, res) {
+    var name = req.body.name,
+        password = req.body.password;
+    if (!name || !password) {
+        req.flash('error', '信息不能为空!');
+        res.redirect('/login');
+    }
+    var user = {
+        name: name
+    };
+    User.get(user, function(err, obj) {
+        if (!obj) {
+            req.flash('error', '用户名不存在!');
+            return res.redirect('/login');
+        }
+        var md5 = crypto.createHash('md5'),
+            password = md5.update(req.body.password).digest('hex');
+        if (password != obj.password) {
+            req.flash('error', '密码错误!');
+            return res.redirect('/login');
+        }
+        req.session.user = obj;
+        req.flash('success', '密码错误!');
+        res.redirect('/admin');
+    })
+}
+
+exports.logout = function(req,res){
+    req.session.user = null;
+    req.flash('success','注销成功!');
+    res.redirect('/');
+}

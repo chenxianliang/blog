@@ -1,0 +1,38 @@
+<%- include header.html %>
+	<section class="main container wrap">
+        <div class="row main-wrap">
+            <div class="col-sm-8 main-left">
+				<% posts.forEach(function (post, index) { %>
+				  <div class="article-item">
+                    <a href="/topic/<%= post.id %>">
+                        <h4 class="article-title">
+                            <%= post.title %>
+                        </h4>
+                    </a>
+                    <div class="article-info clearfix">
+                        <img src="../images/1.png" alt="" class="article-img fl">
+                        <div class="article-post fr">
+                            <p class="article-txt">
+                            	<%= post.preview %>
+                            </p>
+                            <div class="article-author">
+                                <span class="article-pre">post by</span>
+                                <span class="article-name"><%= post.author %></span>评论(12)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<% }) %>
+                <div class="article-pager">
+                    <a href="#">首页</a>
+                    <a href="#">上一页</a>
+                    <span>下一页</span>
+                    <span>尾页</span>
+                </div>
+            </div>
+            <div class="col-sm-4 main-right">
+              <%- include right.html %>
+            </div>
+        </div>
+    </section>
+<%- include footer.html %>

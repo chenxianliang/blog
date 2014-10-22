@@ -1,0 +1,73 @@
+<%- include header.html %>
+<section class="main container wrap">
+        <div class="row main-wrap">
+            <div class="col-sm-8 main-left">
+                <div class="post">
+                    <h1 class="post-title">
+                        <%= post.title %>
+                    </h1>
+                    <div class="post-author">
+                        作者：<%= post.author %> &nbsp;&nbsp;<%= post.atime.day %>
+                    </div>
+                    <div class="post-content">
+                        <%- post.content %>
+                    </div>
+                    <div class="share">
+                        分享到：<a class="share-qq" href="#">QQ</a><a href="#" class="share-weibo">新浪微博</a>
+                    </div>
+                </div>
+                <div class="comment-add clearfix">
+                    <h3 class="comment-title">
+                        添加评论
+                    </h3>
+                    <textarea name="" class="comment-add-txt" placeholder="说点什么"></textarea>
+                    <button type="button" class="btn btn-default fr">提 交</button>
+                </div>
+                <div class="comment-list">
+                    <h3 class="comment-title">
+                        本文评论
+                    </h3>
+                    <div class="comment-list-item">
+                        <p class="comment-author clearfix">
+                            <span class="comment-name fl">小俊俊</span>
+                            <span class="comment-time fr">三天前</span>
+                        </p>
+                        <div class="comment-list-info">
+                            弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦
+                        </div>
+                        <div class="comment-replay clearfix">
+                            <a href="javascript:;" class="fr">回复</a>
+                        </div>
+                    </div>
+                    <div class="comment-list-item">
+                        <p class="comment-author clearfix">
+                            <span class="comment-name fl">小俊俊</span>
+                            <span class="comment-time fr">三天前</span>
+                        </p>
+                        <div class="comment-list-info">
+                            弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦
+                        </div>
+                        <div class="comment-replay clearfix">
+                            <a href="javascript:;" class="fr">回复</a>
+                        </div>
+                    </div>
+                    <div class="comment-list-item">
+                        <p class="comment-author clearfix">
+                            <span class="comment-name fl">小俊俊</span>
+                            <span class="comment-time fr">三天前</span>
+                        </p>
+                        <div class="comment-list-info">
+                            弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦
+                        </div>
+                        <div class="comment-replay clearfix">
+                            <a href="javascript:;" class="fr">回复</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 main-right">
+                <%- include right.html %>
+            </div>
+        </div>
+    </section>
+<%- include footer.html %>
