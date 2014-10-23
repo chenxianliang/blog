@@ -2,6 +2,7 @@ var mongodb = require('../tool/db');
 var dbhelp = require('../tool/dbhelp');
 var fixrow = require('../tool/fixrow');
 var rstring = require('../tool/rstring');
+var time = require('../tool/getTime');
 
 function Post(post) {
     this.author = post.author;
@@ -21,8 +22,6 @@ function Post(post) {
 
 module.exports = Post;
 Post.prototype.add = function(callback) {
-    var date = new Date();
-    //存储各种时间格式，方便以后扩展
     var atime = time();
     var post = {
         atime: atime,
