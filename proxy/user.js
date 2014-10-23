@@ -1,4 +1,4 @@
-var crypto = require('crypto'),
+var crypto = require('../tool/crypto'),
     User = require('../models/user');
 
 
@@ -34,8 +34,7 @@ exports.userAdd = function(req, res) {
         return res.redirect('/admin/user'); //返回注册页
     }
     //生成密码的 md5 值
-    var md5 = crypto.createHash('md5'),
-        password = md5.update(req.body.password).digest('hex');
+    var password = crypto.encode('hash','md5',req.body.password,'hex');
     var newUser = new User({
         name: name,
         password: password,
@@ -45,13 +44,13 @@ exports.userAdd = function(req, res) {
 
     var query = {};
     query.name = newUser.name;
-    User.get(query, function(err, user) {
+    User.list(query, function(err, user) {
         if (user) {
             req.flash('error', '用户已存在!');
             return res.redirect('/admin/user'); //返回注册页
         }
         //如果不存在则新增用户
-        newUser.save(function(err, user) {
+        newUser.add(function(err, user) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('/admin/user'); //注册失败返回主册页

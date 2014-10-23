@@ -10,7 +10,9 @@
                         </h4>
                     </a>
                     <div class="article-info clearfix">
-                        <img src="../images/1.png" alt="" class="article-img fl">
+                        <a href="/topic/<%= post.id %>">
+                            <img src="<%= post.prePic %>" alt="" class="article-img fl">
+                        </a>
                         <div class="article-post fr">
                             <p class="article-txt">
                             	<%= post.preview %>

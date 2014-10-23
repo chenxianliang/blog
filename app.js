@@ -11,7 +11,7 @@ var MongoStore = require('connect-mongo')(express);
 var settings = require('./settings');
 var flash = require('connect-flash');
 var ueditor=require('ueditor');
-
+global.BASENAME = __dirname;
 var app = express();
 
 // all environments
@@ -20,9 +20,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 app.use(flash());
-app.use(express.favicon());
+app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.logger('dev'));
-app.use(express.bodyParser());
+app.use(express.bodyParser({
+        uploadDir: __dirname + '/tmp'
+}));
 app.use(express.methodOverride());
 
 

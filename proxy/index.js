@@ -1,6 +1,3 @@
-var crypto = require('crypto'),
-    User = require('../models/user'),
-    Post = require('../models/post');
 
 exports.adminShow = function(req, res) {
     res.render('admin/index.html', {

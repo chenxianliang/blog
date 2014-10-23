@@ -1,6 +1,9 @@
 .wrap {
     width: 98%;
 }
+textarea{
+	resize:none;
+}
 .clearfix:after{
 	clear:both;
 	display: block;

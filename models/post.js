@@ -1,12 +1,14 @@
-var mongodb = require('./db');
-var fixrow = require('./fixrow');
+var mongodb = require('../tool/db');
+var dbhelp = require('../tool/dbhelp');
+var fixrow = require('../tool/fixrow');
+var rstring = require('../tool/rstring');
 
 function Post(post) {
     this.author = post.author;
     this.title = post.title;
     this.content = post.content;
     this.address = post.address;
-    this.pic = post.pic;
+    this.prePic = post.prePic;
     this.sign = post.sign;
     this.top = post.top;
     this.slide = post.slide;
@@ -18,32 +20,25 @@ function Post(post) {
 }
 
 module.exports = Post;
-Post.prototype.save = function(callback) {
+Post.prototype.add = function(callback) {
     var date = new Date();
     //存储各种时间格式，方便以后扩展
-    var atime = {
-        date: date,
-        year: date.getFullYear(),
-        month: date.getFullYear() + "-" + (date.getMonth() + 1),
-        day: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
-        minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
-            date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
-    }
+    var atime = time();
     var post = {
         atime: atime,
         author: this.author,
         title: this.title,
         content: this.content,
-        address : this.address,
-        pic : this.pic,
-        sign : this.sign,
-        top  : this.top,
-        slide : this.slide,
-        arrowComment : this.arrowComment,
-        out : this.out,
-        mtime : this.mtime,
-        cls : this.cls,
-        preview:this.preview
+        address: this.address,
+        prePic: this.prePic,
+        sign: this.sign,
+        top: this.top,
+        slide: this.slide,
+        arrowComment: this.arrowComment,
+        out: this.out,
+        mtime: this.mtime,
+        cls: this.cls,
+        preview: this.preview
     };
     mongodb.open(function(err, db) {
         if (err) {
@@ -67,35 +62,20 @@ Post.prototype.save = function(callback) {
     })
 }
 
-Post.get = function(id, callback) {
-    mongodb.open(function(err, db) {
-        if (err) {
-            return callback(err);
-        }
-        db.collection('post', function(err, collection) {
-            if (err) {
-                mongodb.close();
-                return callback(err);
-            }
-            var query = {};
-            if (id) {
-                var mongoid = new require('mongodb').ObjectID(id);
-                query['_id'] = mongoid;
-            }
-
-
-            collection.find(query).toArray(function(err, docs) {
-                var outArray = [];
-                mongodb.close();
-                if (err) {
-                    return callback(err);
-                }
-                for (var i = 0; i < docs.length; i++) {
-                    outArray.push(fixrow(docs[i]))
-                }
-                callback(null, outArray);
-            })
-        })
-    })
+Post.modify = function(id, rowInfo, callback) {
+    dbhelp.modify(id, 'post', rowInfo, callback);
 }
 
+
+Post.getOne = function(id, callback) {
+    dbhelp.getOne(id, 'post', callback);
+}
+
+Post.remove = function(id, callback) {
+    dbhelp.remove(id, 'post', callback);
+}
+
+
+Post.list = function(query, callback) {
+    dbhelp.list(query, 'post', callback);
+}

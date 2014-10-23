@@ -6,59 +6,106 @@
     <meta charset="utf-8" />
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/admin.css" rel="stylesheet">
-    <script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="/webuploader/webuploader.css">
+    <script src="/js/jquery-1.11.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js">
     </script>
+    <script type="text/javascript" charset="utf-8" src="/webuploader/webuploader.js">
+    </script>
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+
 </head>
 
 <body>
     <section class="wrap">
         <h1 class="title">发布文章</h1>
-        <form class="form-horizontal " role="form" action="/admin/postAdd" method="post">
+            <% if(post){ %>
+                <form class="form-horizontal " role="form" action="/admin/postEdit" method="post">
+            <% }else{%>
+                <form class="form-horizontal " role="form" action="/admin/postAdd" method="post">
+            <% } %> 
+            <% if(post){ %>
+               <input type="hidden" name="id" value="<%= post.id %>">
+            <% } %> 
             <div class="form-group form-group-sm">
                 <label for="title" class="col-sm-1 control-label">标题</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" name="title" id="title" placeholder="请输入标题">
+                    <% if(post){ %>
+                        <input type="text" class="form-control"  value="<%= post.title%>" name="title" id="title" placeholder="请输入标题">
+                    <% }else{%>
+                        <input type="text" class="form-control"  value="" name="title" id="title" placeholder="请输入标题">
+                    <% } %> 
                 </div>
             </div>
             <div class="form-group form-group-sm">
+                <label for="title" class="col-sm-1 control-label">缩略图</label>
+                <div class="col-sm-11">
+                    <div class="col-sm-2" style="padding-left:0">
+                        <div id="uploader-demo">
+                            <!--用来存放item-->
+                            <div id="filePicker">选择图片</div>
+                            <% if(post){ %>
+                                <input type="hidden" name="prePic" value="<%=post.prePic%>" id="prePic">
+                            <% }else{%>
+                                <input type="hidden" name="prePic" value="images/short.png" id="prePic">
+                            <% } %> 
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div id="fileList" class="uploader-list">
+                            <% if(post){ %>
+                            <div id="WU_FILE_0" class="file-item thumbnail upload-state-done"><img src="<%=post.prePic%>"  style="width:90px;height:90px;"></div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-group-sm">
                 <label for="title" class="col-sm-1 control-label">导读</label>
                 <div class="col-sm-4">
-                    <textarea name="preview" class="form-control" style="width:100%;height:60px;"></textarea>
+                    <% if(post){ %>
+                        <textarea name="preview" class="form-control" style="width:100%;height:60px;" value="<%= post.preview%>"><%= post.preview%></textarea>
+                    <% }else{%>
+                        <textarea name="preview" class="form-control" style="width:100%;height:60px;" value=""></textarea>
+                    <% } %> 
+                    
                 </div>
             </div>
             <div class="form-group form-group-sm">
                 <label for="address" class="col-sm-1 control-label">文章分类</label>
                 <div class="col-sm-4">
                     <select class="form-control" name="cls">
-                     <option value="node.js">node.js</option>
-                     <option value="javascript">javascript</option>
-                     <option value="html/css">html/css</option>
-                     <option value="html5/css3">html5/css3</option>
-                  </select>
+                        <option value="node.js">node.js</option>
+                        <option value="javascript">javascript</option>
+                        <option value="html/css">html/css</option>
+                        <option value="html5/css3">html5/css3</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group form-group-sm">
                 <label for="address" class="col-sm-1 control-label">优化地址</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" name="address" id="address" placeholder="只能使用字母、数字、-连字符、_下划线，不超过40个字符">
-                </div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label for="pic" class="col-sm-1 control-label">预览图</label>
-                <div class="col-sm-4">
-                   
+                    <% if(post){ %>
+                        <input type="text" class="form-control" value="<%= post.address %>" name="address" id="address" placeholder="只能使用字母、数字、-连字符、_下划线，不超过40个字符">
+                    <% }else{%>
+                       <input type="text" class="form-control" value="" name="address" id="address" placeholder="只能使用字母、数字、-连字符、_下划线，不超过40个字符">
+                    <% } %> 
+                    
                 </div>
             </div>
             <div class="form-group form-group-sm">
                 <label for="sign" class="col-sm-1  control-label">标签</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" name="sign" id="sign" placeholder="请从下面选择标签">
+                    <% if(post){ %>
+                        <input type="text" class="form-control" value="<%= post.sign %>" name="sign" id="sign" placeholder="请从下面选择标签">
+                    <% }else{%>
+                       <input type="text" class="form-control" value="" name="sign" id="sign" placeholder="请从下面选择标签">
+                    <% } %> 
                 </div>
             </div>
             <div>
@@ -76,6 +123,7 @@
             <div class="editer-wrap clearfix">
                 <div class="col-sm-offset-1 col-sm-8 ">
                     <script id="editor" type="text/plain" name="content" style="height:400px">
+                    <%- post ? post.content : ''%>
                     </script>
                     <script>
                     var ue = UE.getEditor('editor');
@@ -89,16 +137,32 @@
                     <label for="name">高级选项</label>
                     <div>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="top" value="true">置顶
+                            <input type="checkbox" name="top" <% if(post){
+                                    if(post.top){%>
+                                       checked 
+                                   <% }
+                                } %>  value="true">置顶
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="slide" value="true">幻灯
+                            <input type="checkbox" name="slide"  <% if(post){
+                                    if(post.slide){%>
+                                       checked 
+                                   <% }
+                                } %> value="true">幻灯
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="arrowComment" value="true" checked>允许评论
+                            <input type="checkbox" name="arrowComment" <% if(post){
+                                    if(post.arrowComment){%>
+                                       checked 
+                                   <% }
+                                } %> value="true" checked>允许评论
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="out" id="optionsRadios3" value="true" checked>对外发布
+                            <input type="checkbox" name="out" <% if(post){
+                                    if(post.out){%>
+                                       checked 
+                                   <% }
+                                } %> id="optionsRadios3" value="true" checked>对外发布
                         </label>
                     </div>
 
@@ -113,12 +177,122 @@
         </form>
     </section>
     <script>
-        <% if (success) {%>
-           alert('发布成功！'); 
-        <% }else if(error){%>
-            alert('发布失败：<%= error %>' ); 
-        <%} %>
+    // 图片上传demo
+    jQuery(function() {
+        var $list = $('#fileList'),
+            // 优化retina, 在retina下这个值是2
+            ratio = window.devicePixelRatio || 1,
+
+            // 缩略图大小
+            thumbnailWidth = 90 * ratio,
+            thumbnailHeight = 90 * ratio,
+
+            // Web Uploader实例
+            uploader;
+
+        // 初始化Web Uploader
+        uploader = WebUploader.create({
+
+            // 自动上传。
+            auto: true,
+
+            // swf文件路径
+            swf: '/webuploader/Uploader.swf',
+
+            // 文件接收服务端。
+            server: '/upload-img',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#filePicker',
+
+            // 只允许选择文件，可选。
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
+        });
+
+        // 当有文件添加进来的时候
+        uploader.on('fileQueued', function(file) {
+            $list.html('');
+            var $li = $(
+                    '<div id="' + file.id + '" class="file-item thumbnail">' +
+                    '<img>' +
+                    '</div>'
+                ),
+                $img = $li.find('img');
+
+            $list.append($li);
+
+            // 创建缩略图
+            uploader.makeThumb(file, function(error, src) {
+                if (error) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+
+                $img.attr('src', src);
+            }, thumbnailWidth, thumbnailHeight);
+        });
+
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on('uploadProgress', function(file, percentage) {
+            var $li = $('#' + file.id),
+                $percent = $li.find('.progress span');
+
+            // 避免重复创建
+            if (!$percent.length) {
+                $percent = $('<p class="progress"><span></span></p>')
+                    .appendTo($li)
+                    .find('span');
+            }
+
+            $percent.css('width', percentage * 100 + '%');
+        });
+
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader.on('uploadSuccess', function(file) {
+            $('#' + file.id).addClass('upload-state-done');
+        });
+
+        // 文件上传失败，现实上传出错。
+        uploader.on('uploadError', function(file) {
+            var $li = $('#' + file.id),
+                $error = $li.find('div.error');
+
+            // 避免重复创建
+            if (!$error.length) {
+                $error = $('<div class="error"></div>').appendTo($li);
+            }
+
+            $error.text('上传失败');
+        });
+
+        // 完成上传完了，成功或者失败，先删除进度条。
+        uploader.on('uploadComplete', function(file) {
+            $('#' + file.id).find('.progress').remove();
+        });
+
+        uploader.on('uploadSuccess',function(file,res){
+            var status = res['_raw'];
+            if(status =='error'){
+                alert('上传失败!');
+            }else{
+                $('#prePic').val(status);
+            }
+        })
+    });
     </script>
+    <script>
+    <%
+    if (success) { %>
+        alert('<%=success%>'); <%
+    } else if (error) { %>
+        alert('操作失败：<%= error %>'); <%
+    } %>
     </script>
 </body>
+
 </html>

@@ -1,7 +1,8 @@
 var user = require('../proxy/user'),
     login = require('../proxy/login'),
     index = require('../proxy/index'),
-    post = require('../proxy/post');
+    post = require('../proxy/post'),
+    upload = require('../proxy/upload');
 
 module.exports = function(app) {
 
@@ -25,12 +26,24 @@ module.exports = function(app) {
 
     app.get('/admin/post',post.adminShow);
 
+    app.get('/admin/postEdit/:id',post.edit);
+
+    app.get('/admin/postRemove/:id',post.remove);
+
+    app.post('/admin/postEdit',post.save);
+
+    app.get('/admin/postList',post.blist);
+
+
     app.post('/admin/postAdd',post.add);
+
 
 
     app.get('/',post.showList);
     app.get('/topic/:id',post.showItem);
 
+
+    app.post('/upload-img',upload.img);
 
 
 
