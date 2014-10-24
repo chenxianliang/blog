@@ -76,10 +76,10 @@ body.side-active{
 	padding-top:10px;
 }
 .article-img{
-	width:90px;
-	height: 90px;
 	border:1px solid #f1f1f1;
 	box-shadow: 0px 0px 5px #f1f1f1;
+	width: 90px;
+	height: 90px;
 }
 .article-post{
 	width:475px;
@@ -200,7 +200,6 @@ footer{
 	font-size:20px;
 	line-height: 28px;
 	padding: 0 10px;
-	text-align: center;	
 } 
 .post-author{
 	font-size: 12px;
@@ -228,6 +227,36 @@ footer{
 	line-height: 40px;
 	margin: 0;
 }
+
+.comment-add-author{
+	font-size:12px;
+	height:24px;
+}
+
+.comment-add-author .comment-add-pre{
+	vertical-align: middle;
+	height:24px;
+	line-height: 24px;
+}
+.comment-add-author .comment-add-name{
+	border:1px solid #ccc;
+	vertical-align: middle;
+	box-sizing:content-box;
+	height:12px;
+	font-size: 12px;
+	line-height: 14px;
+	padding: 6px 4px;
+	width:120px;
+	border-radius:4px;
+
+}
+.comment-add-author .comment-add-name:active{
+	border:1px solid #3eabff;
+    -webkit-box-shadow: 0 0 1px #91bbd9;
+    -moz-box-shadow: 0 0 1px #91bbd9;
+    box-shadow: 0 0 1px #91bbd9
+}
+
 .comment-add-txt{
 	width:580px;
 	padding: 10px;

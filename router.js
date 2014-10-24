@@ -33,26 +33,7 @@ module.exports = function(app) {
 
     app.get('/',index.showIndex);
 
-    
-    // app.get('/admin/postEdit/:id',post.edit);
-
-    // app.get('/admin/postRemove/:id',post.remove);
-
-    // app.post('/admin/postEdit',post.save);
-
-    // app.get('/admin/postList',post.blist);
-
-
-    // app.post('/admin/postAdd',post.add);
-
-
-
-    // app.get('/',post.showList);
-    // app.get('/topic/:id',post.showItem);
-
-
-    // app.post('/upload-img',upload.img);
-
+    app.get('/topic/:id',topic.showItem);
 
 
     function checkLogin(req, res, next) {

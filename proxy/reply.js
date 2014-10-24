@@ -87,7 +87,7 @@ exports.getRepliesByTopicId = function (id, cb) {
  * @param {String} [replyId] 回复ID，当二级回复时设定该值
  * @param {Function} callback 回调函数
  */
-exports.newAndSave = function (content, topicId, authorId, replyId, callback) {
+exports.newAndSave = function (content, topicId, authorId, replyId,ip, callback) {
   if (typeof replyId === 'function') {
     callback = replyId;
     replyId = null;
@@ -96,6 +96,7 @@ exports.newAndSave = function (content, topicId, authorId, replyId, callback) {
   reply.content = content;
   reply.topic_id = topicId;
   reply.author_id = authorId;
+  reply.ip = ip;
   if (replyId) {
     reply.reply_id = replyId;
   }

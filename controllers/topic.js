@@ -134,7 +134,8 @@ exports.remove = function(req, res) {
     Topic.getTopicById(id, function(err, topic, author) {
         if (!topic) {
             req.flash('error', '文章已经不存在!');
-            return; res.redirect('back');
+            return;
+            res.redirect('back');
         }
         if (author.id != req.session.user['_id']) {
             req.flash('error', '您无权编辑此文章!');
@@ -150,3 +151,36 @@ exports.remove = function(req, res) {
         });
     });
 }
+
+
+exports.showItem = function(req, res) {
+    var id = req.params.id;
+    Topic.getTopicById(id, function(err, topic, author, reply) {
+        if (!topic) {
+            req.flash('error', '文章已经不存在!');
+            return;
+            res.redirect('back');
+        }
+        res.render('detail.html', {
+            title: topic.title,
+            topic: topic,
+            author: author,
+            reply: reply,
+            ip: getClientIp(req),
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    });
+}
+
+
+function getClientIp(req) {
+    var ip = req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
+    var arr = ip.split('.');
+    var ip2 = [arr[0],'**','**',arr[3]].join('.');
+    return [ip,ip2];
+};

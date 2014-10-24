@@ -11,7 +11,8 @@ var ReplySchema = new Schema({
   reply_id: { type: ObjectId },
   create_at: { type: Object, default: getTime() },
   update_at: { type: Object, default: getTime() },
-  content_is_html: { type: Boolean }
+  content_is_html: { type: Boolean },
+  ip : {type:String},
 });
 
 ReplySchema.index({topic_id: 1});
