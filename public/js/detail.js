@@ -18,7 +18,8 @@ $(function() {
         var $ip = $('.comment-add-name');
 
         if(content == ''){
-        	alert('评论内容不能为空!')
+        	alert('评论内容不能为空!');
+            _addComment = false;
         	return;
         }
 
