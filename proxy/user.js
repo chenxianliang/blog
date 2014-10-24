@@ -1,74 +1,89 @@
-var crypto = require('../tool/crypto'),
-    User = require('../models/user');
+var models = require('../models');
+var User = models.User;
 
-
-exports.index = function(req, res) {
-    res.render('admin/index.html', {
-        title: 'cZone管理平台',
-        user: req.session.user,
-        success: req.flash('success').toString(),
-        error: req.flash('error').toString()
-    });
+/**
+ * 根据用户名列表查找用户列表
+ * Callback:
+ * - err, 数据库异常
+ * - users, 用户列表
+ * @param {Array} names 用户名列表
+ * @param {Function} callback 回调函数
+ */
+exports.getUsersByNames = function (names, callback) {
+  if (names.length === 0) {
+    return callback(null, []);
+  }
+  User.find({ loginname: { $in: names } }, callback);
 };
 
-exports.userShow = function(req, res) {
-    res.render('admin/user.html', {
-        title: '管理员维护',
-        user: req.session.user,
-        success: req.flash('success').toString(),
-        error: req.flash('error').toString()
-    });
-}
+/**
+ * 根据登录名查找用户
+ * Callback:
+ * - err, 数据库异常
+ * - user, 用户
+ * @param {String} loginName 登录名
+ * @param {Function} callback 回调函数
+ */
+exports.getUserByLoginName = function (loginName, callback) {
+  User.findOne({'loginname': loginName}, callback);
+};
 
-exports.userAdd = function(req, res) {
-    var name = req.body.name,
-        password = req.body.password,
-        password_re = req.body.password2;
-    //检验用户两次输入的密码是否一致
-    if (password_re != password) {
-        req.flash('error', '两次输入的密码不一致!');
-        return res.redirect('/admin/user'); //返回注册页
-    }
-    if (!name || !password || !req.body.email) {
-        req.flash('error', '数据不能为空!');
-        return res.redirect('/admin/user'); //返回注册页
-    }
-    //生成密码的 md5 值
-    var password = crypto.encode('hash','md5',req.body.password,'hex');
-    var newUser = new User({
-        name: name,
-        password: password,
-        email: req.body.email
-    });
-    //检查用户名是否已经存在 
+/**
+ * 根据用户ID，查找用户
+ * Callback:
+ * - err, 数据库异常
+ * - user, 用户
+ * @param {String} id 用户ID
+ * @param {Function} callback 回调函数
+ */
+exports.getUserById = function (id, callback) {
+  User.findOne({_id: id}, callback);
+};
 
-    var query = {};
-    query.name = newUser.name;
-    User.list(query, function(err, user) {
-        if (user) {
-            req.flash('error', '用户已存在!');
-            return res.redirect('/admin/user'); //返回注册页
-        }
-        //如果不存在则新增用户
-        newUser.add(function(err, user) {
-            if (err) {
-                req.flash('error', err);
-                return res.redirect('/admin/user'); //注册失败返回主册页
-            }
-            req.session.user = user; //用户信息存入 session
-            req.flash('success', '注册成功!');
-            res.redirect('/admin/user'); //注册成功后返回主页
-        });
-    });
-}
+/**
+ * 根据邮箱，查找用户
+ * Callback:
+ * - err, 数据库异常
+ * - user, 用户
+ * @param {String} email 邮箱地址
+ * @param {Function} callback 回调函数
+ */
+exports.getUserByMail = function (email, callback) {
+  User.findOne({email: email}, callback);
+};
 
-exports.loginShow = function(req, res) {
-    res.render('admin/login.html', {
-        title: '用户登录',
-        user: req.session.user,
-        success: req.flash('success').toString(),
-        error: req.flash('error').toString()
-    });
-}
+/**
+ * 根据用户ID列表，获取一组用户
+ * Callback:
+ * - err, 数据库异常
+ * - users, 用户列表
+ * @param {Array} ids 用户ID列表
+ * @param {Function} callback 回调函数
+ */
+exports.getUsersByIds = function (ids, callback) {
+  User.find({'_id': {'$in': ids}}, callback);
+};
 
+/**
+ * 根据关键字，获取一组用户
+ * Callback:
+ * - err, 数据库异常
+ * - users, 用户列表
+ * @param {String} query 关键字
+ * @param {Object} opt 选项
+ * @param {Function} callback 回调函数
+ */
+exports.getUsersByQuery = function (query, opt, callback) {
+  User.find(query, '', opt, callback);
+};
+
+
+exports.newAndSave = function (name, loginname, pass, email,callback) {
+  var user = new User();
+  user.name = name;
+  user.loginname = loginname;
+  user.pass = pass;
+  user.email = email;
+  user.save(callback);
+};
 

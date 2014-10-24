@@ -12,6 +12,8 @@
     "connect-mongo ":"*",
     "connect-flash":"*",
     "markdown":"*",
-    "ueditor":"*"
+    "ueditor":"*",
+    "mongoose":"*",
+    "eventproxy":"*"
   }
 }

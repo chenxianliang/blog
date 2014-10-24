@@ -4,7 +4,7 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
+var routes = require('./router');
 var http = require('http');
 var path = require('path');
 var MongoStore = require('connect-mongo')(express);

@@ -1,10 +1,10 @@
 <%- include ../header.html %>
     <div class="container login-wrap">
-    <form action="/login" class="form-signin" role="form" method="post">
+    <form action="/admin_login" class="form-signin" role="form" method="post">
         <h2 class="form-signin-heading">用户登录</h2>
-        <input type="text" class="form-control" name="name" placeholder="请输入用户名" required autofocus>
+        <input type="text" class="form-control" name="loginname" placeholder="请输入用户名" required autofocus>
         <div style="height:10px;clear:both;display:block"></div>
-        <input type="password" class="form-control" name="password" placeholder="请输入密码" required>
+        <input type="password" class="form-control" name="pass" placeholder="请输入密码" required>
         <div style="height:10px;clear:both;display:block"></div>
         <div class="row code">
             <label for="" class="code-label">验证码</label>

@@ -2,24 +2,24 @@
 	<section class="main container wrap">
         <div class="row main-wrap">
             <div class="col-sm-8 main-left">
-				<% posts.forEach(function (post, index) { %>
+				<% topics.forEach(function (topic, index) { %>
 				  <div class="article-item">
-                    <a href="/topic/<%= post.id %>">
+                    <a href="/topic/<%= topic.id %>">
                         <h4 class="article-title">
-                            <%= post.title %>
+                            <%= topic.title %>
                         </h4>
                     </a>
                     <div class="article-info clearfix">
-                        <a href="/topic/<%= post.id %>">
-                            <img src="<%= post.prePic %>" alt="" class="article-img fl">
+                        <a href="/topic/<%= topic.id %>">
+                            <img src="<%= topic.thumb_pic %>" alt="" class="article-img fl">
                         </a>
                         <div class="article-post fr">
                             <p class="article-txt">
-                            	<%= post.preview %>
+                            	<%= topic.preview %>
                             </p>
                             <div class="article-author">
                                 <span class="article-pre">post by</span>
-                                <span class="article-name"><%= post.author %></span>评论(12)
+                                <span class="article-name"><%= topic.author.name %></span>评论(12)
                             </div>
                         </div>
                     </div>
