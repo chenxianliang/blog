@@ -158,8 +158,7 @@ exports.showItem = function(req, res) {
     Topic.getTopicById(id, function(err, topic, author, reply) {
         if (!topic) {
             req.flash('error', '文章已经不存在!');
-            return;
-            res.redirect('back');
+            return res.redirect('back');
         }
         res.render('detail.html', {
             title: topic.title,

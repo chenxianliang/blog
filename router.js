@@ -1,6 +1,7 @@
 var user = require('./controllers/user'),
     topic = require('./controllers/topic'),
     index = require('./controllers/index'),
+    reply = require('./controllers/reply'),
     upload = require('./controllers/upload');
 
 module.exports = function(app) {
@@ -34,6 +35,10 @@ module.exports = function(app) {
     app.get('/',index.showIndex);
 
     app.get('/topic/:id',topic.showItem);
+
+    //处理ajax提交的回复
+    
+    app.post('/ajax/reply_add',reply.ajaxAdd);
 
 
     function checkLogin(req, res, next) {

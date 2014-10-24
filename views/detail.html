@@ -1,5 +1,6 @@
 <%- include header.html %>
 <section class="main container wrap">
+        <input type="hidden" class="js_hidden_topicId" value = "<%= topic['_id'] %>">
         <div class="row main-wrap">
             <div class="col-sm-8 main-left">
                 <div class="post">
@@ -24,9 +25,9 @@
                     <div class="comment-add-author clearfix">
                         <span class="comment-add-pre fl">用户名：</span>
                         <input type="text" class="fl comment-add-name" value="<%= ip[1] %>" placeholder="请输入用户名" / >
-                        <input type="hidden" value="<%= ip[0] %>" / >
+                        <input type="hidden" class="js_hidden_ip" value="<%= ip[0] %>" / >
                     </div>
-                    <button type="button" class="btn btn-default fr">提 交</button>
+                    <button type="button" class="btn btn-default fr js_addComment">提 交</button>
                 </div>
                 <div class="comment-list">
                     <h3 class="comment-title">
@@ -75,6 +76,21 @@
             </div>
         </div>
     </section>
+
+    <div style="display: none;" id="js_cTemplete">
+        <div class="comment-list-item">
+            <p class="comment-author clearfix">
+                <span class="comment-name fl"></span>
+                <span class="comment-time fr">刚刚</span>
+            </p>
+            <div class="comment-list-info">
+            </div>
+            <div class="comment-replay clearfix">
+                <a href="javascript:;" class="fr">回复</a>
+            </div>
+        </div>
+    </div>
+    <script src="/js/detail.js"></script>
 <%- include footer.html %>
 
 
