@@ -83,6 +83,7 @@ exports.getTopicsByQuery = function (query, opt, callback) {
       topics_id.push(docs[i]._id);
     }
 
+
     var proxy = new EventProxy();
     proxy.after('topic_ready', topics_id.length, function (topics) {
       // 过滤掉空值
@@ -98,6 +99,7 @@ exports.getTopicsByQuery = function (query, opt, callback) {
         // 当id查询出来之后，进一步查询列表时，文章可能已经被删除了
         // 所以这里有可能是null
         if (topic) {
+         // topic = JSON.parse(JSON.stringify( topic ));
           topic.author = author;
           topic.reply = last_reply;
         }

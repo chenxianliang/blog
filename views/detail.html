@@ -21,7 +21,12 @@
                     <h3 class="comment-title">
                         添加评论
                     </h3>
-                    <textarea name="" class="comment-add-txt" placeholder="说点什么"></textarea>
+                    <div class="comment-add-wrap">
+                         <div class="atwrap" data-id="" data-user="">
+                             <span></span>
+                         </div>
+                         <textarea name="" class="comment-add-txt" placeholder="说点什么"></textarea>
+                    </div>
                     <div class="comment-add-author clearfix">
                         <span class="comment-add-pre fl">用户名：</span>
                         <input type="text" class="fl comment-add-name" value="<%= ip[1] %>" placeholder="请输入用户名" / >
@@ -33,42 +38,24 @@
                     <h3 class="comment-title">
                         本文评论
                     </h3>
-                    <div class="comment-list-item">
-                        <p class="comment-author clearfix">
-                            <span class="comment-name fl">小俊俊</span>
-                            <span class="comment-time fr">三天前</span>
-                        </p>
-                        <div class="comment-list-info">
-                            弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦
+                    <% reply.forEach(function(rep,index){ %>
+                        <div class="comment-list-item">
+                            <input type="hidden" class="js_hidden_repId" value="<%= rep['_id'] %>" />
+                            <p class="comment-author clearfix">
+                                <span class="comment-name fl"><%= rep.outIp %></span>
+                                <span class="comment-time fr"><%= rep.create_at.minute %></span>
+                            </p>
+                            <div class="comment-list-info">
+                                <%- rep.content.replace(/\n/g,'<br />')%>
+                            </div>
+                            <div class="comment-replay clearfix">
+                                <a href="javascript:;" class="fr js_call_rep">回复</a>
+                            </div>
                         </div>
-                        <div class="comment-replay clearfix">
-                            <a href="javascript:;" class="fr">回复</a>
-                        </div>
-                    </div>
-                    <div class="comment-list-item">
-                        <p class="comment-author clearfix">
-                            <span class="comment-name fl">小俊俊</span>
-                            <span class="comment-time fr">三天前</span>
-                        </p>
-                        <div class="comment-list-info">
-                            弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦
-                        </div>
-                        <div class="comment-replay clearfix">
-                            <a href="javascript:;" class="fr">回复</a>
-                        </div>
-                    </div>
-                    <div class="comment-list-item">
-                        <p class="comment-author clearfix">
-                            <span class="comment-name fl">小俊俊</span>
-                            <span class="comment-time fr">三天前</span>
-                        </p>
-                        <div class="comment-list-info">
-                            弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦弗兰克手机阿富汗萨克龙卷风哈萨克几乎反卡收费卡什科夫哈萨克减肥哈萨克好烦
-                        </div>
-                        <div class="comment-replay clearfix">
-                            <a href="javascript:;" class="fr">回复</a>
-                        </div>
-                    </div>
+                    <% }) %>
+                    <% if(next_reply ){%>
+                        <div class="comment-list-loadmore"> 加载更多 </div>
+                    <%}%>
                 </div>
             </div>
             <div class="col-sm-4 main-right">
@@ -79,6 +66,7 @@
 
     <div style="display: none;" id="js_cTemplete">
         <div class="comment-list-item">
+            <input type="hidden" class="js_hidden_repId" value="" />
             <p class="comment-author clearfix">
                 <span class="comment-name fl"></span>
                 <span class="comment-time fr">刚刚</span>
@@ -86,7 +74,7 @@
             <div class="comment-list-info">
             </div>
             <div class="comment-replay clearfix">
-                <a href="javascript:;" class="fr">回复</a>
+                <a href="javascript:;"  class="fr js_call_rep">回复</a>
             </div>
         </div>
     </div>

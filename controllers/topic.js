@@ -5,6 +5,7 @@ var models = require('../models');
 var getTime = require('../tool/getTime');
 var TopicModel = models.Topic;
 var ReplyModel = models.Reply;
+var iphelp = require('../tool/ip');
 
 var EventProxy = require('eventproxy');
 
@@ -155,31 +156,49 @@ exports.remove = function(req, res) {
 
 exports.showItem = function(req, res) {
     var id = req.params.id;
+    var once = require('../settings').reply_page_count;
+
+    var options = {
+        skip: 0,
+        limit: once,
+        sort: '-create_at.date'
+    };
+
+
     Topic.getTopicById(id, function(err, topic, author, reply) {
         if (!topic) {
             req.flash('error', '文章已经不存在!');
             return res.redirect('back');
         }
-        res.render('detail.html', {
-            title: topic.title,
-            topic: topic,
-            author: author,
-            reply: reply,
-            ip: getClientIp(req),
-            user: req.session.user,
-            success: req.flash('success').toString(),
-            error: req.flash('error').toString()
-        });
+        Reply.getRepliesByQuery({
+            'topic_id': id
+        }, options, function(err, rep) {
+            rep.forEach(function(r) {
+                if (isIp(r.ip)) {
+                    r.outIp = iphelp.fixip(r.ip);
+                } else {
+                    r.outIp = r.ip;
+                }
+            });
+            Reply.getCountByTopicId(id,function(err,count){
+                res.render('detail.html', {
+                    title: topic.title,
+                    topic: topic,
+                    author: author,
+                    reply: rep,
+                    next_reply:count > once,
+                    ip: iphelp.getip(req),
+                    user: req.session.user,
+                    success: req.flash('success').toString(),
+                    error: req.flash('error').toString()
+                });
+            });
+        })
     });
 }
 
 
-function getClientIp(req) {
-    var ip = req.headers['x-forwarded-for'] ||
-        req.connection.remoteAddress ||
-        req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress;
-    var arr = ip.split('.');
-    var ip2 = [arr[0],'**','**',arr[3]].join('.');
-    return [ip,ip2];
-};
+function isIp(ip) {
+    var reg = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
+    return ip.match(reg);
+}

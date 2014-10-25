@@ -18,30 +18,75 @@ var ReplyModel = models.Reply;
  * @param  {[type]} res [description]
  * @return {[type]}     [description]
  */
-exports.ajaxAdd = function(req,res){
-	var content = req.body.content || '',
-		reply_id = req.body.reply_id || 0,
-		ip = req.body.ip || '',
-		topicId = req.body.topicId;
+exports.ajaxAdd = function(req, res) {
+    var content = req.body.content || '',
+        reply_id = req.body.reply_id || null,
+        ip = req.body.ip || '',
+        topicId = req.body.topicId;
+    var authorId = 0;
 
-	var authorId = 0;
+    if (req.session.user) {
+        authorId = req.session.user['_id'];
+    }
+    if (content == '' || ip == '' || topicId == '') {
+        var out = {
+            status: 1010,
+            msg: '必要内容不能为空!'
+        };
+        return res.send(out);
+    }
 
-	if(req.session.user){
-		authorId = req.session.user['_id'];
-	}
-	if( content == ''  || ip =='' || topicId == ''){
-		var out = {status:1010,msg:'必要内容不能为空!'};
-		return res.send(out);
-	}	
-
-	Topic.getTopicById(topicId, function(err, topic, author, reply) {
+    Topic.getTopicById(topicId, function(err, topic, author, reply) {
         if (!topic) {
-            var out = {status:1010,msg:'文章不存在!'};
-			return res.send(out);
+            var out = {
+                status: 1010,
+                msg: '文章不存在!'
+            };
+            return res.send(out);
         }
-        Reply.newAndSave(content, topicId, authorId, reply_id,ip, function(err,rep){
-        	var out = {status:1000,msg:rep};
-			return res.send(out);
-		})
+        Reply.newAndSave(content, topicId, authorId, ip, reply_id, function(err, rep) {
+            Topic.updateLastReply(topicId, rep['_id'], function(err, t) {
+                var out = {
+                    status: 1000,
+                    msg: rep
+                };
+                return res.send(out);
+            });
+        })
     });
+}
+
+//.replace(/\</g,'&lt').replace(/\>/g,'&gt')
+
+exports.ajaxload = function(req, res) {
+    var once = require('../settings').reply_page_count;
+    var page = parseInt(req.query.page, 10) || 1;
+    page = page > 0 ? page : 1;
+    var topicId = req.query.topicId;
+
+    var options = {
+        skip: (page - 1) * once,
+        limit: once,
+        sort: '-create_at.date'
+    };
+    Reply.getRepliesByQuery({
+        'topic_id': topicId
+    }, options, function(err, rep) {
+        Reply.getCountByTopicId(topicId, function(err, count) {
+        	rep.forEach(function(re){
+        		re.ip = re.ip.replace(/\</g,'&lt').replace(/\>/g,'&gt');
+        		re.content = re.content.replace(/\</g,'&lt').replace(/\>/g,'&gt').replace(/\n/g,'<br />');
+        		return re;
+        	})
+            if(err){
+            	var out = {status:1010,msg:'加载失败'};
+            	return res.send(out);
+            }
+            var hNext = Math.ceil(count/once) > page;
+            var out = {status:1000,data:rep,hasNext:hNext};
+            res.send(out);
+        });
+    })
+
+
 }

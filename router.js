@@ -41,6 +41,9 @@ module.exports = function(app) {
     app.post('/ajax/reply_add',reply.ajaxAdd);
 
 
+    app.get('/ajax/more_reply',reply.ajaxload);
+
+
     function checkLogin(req, res, next) {
         if (!req.session.user) {
             req.flash('error', '未登录!');

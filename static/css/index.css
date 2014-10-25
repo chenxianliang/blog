@@ -3,6 +3,12 @@ ul{
 	padding: 0;
 	list-style:none;
 }
+
+textarea{
+	overflow: auto;
+	resize:none;
+	border-radius:4px;
+}
 img{
 	vertical-align: top;
 	border:none;
@@ -264,6 +270,19 @@ footer{
 	border-radius:3px;
 }
 
+.comment-add-wrap{
+	position: relative;
+}
+.comment-add-wrap .atwrap{
+	position: absolute;
+	padding: 0 8px;
+	top:12px;
+	left: 0;
+	background: #ccc;
+	border-radius:3px;
+	margin-left: 10px;
+}
+
 .comment-list-item{
 	padding: 15px;
 	border-radius:4px;
@@ -279,10 +298,28 @@ footer{
 .comment-list-info{
 	font-size: 14px;
 	line-height: 24px;
+	word-break:break-all;
 }
 
 .comment-replay a{
 	color:#ef252a;
+}
+
+
+.comment-list-loadmore{
+	padding: 0 15px;
+	height:30px;
+	line-height: 30px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	text-align: center;
+	cursor: pointer;
+	background: rgba(0,0,0,.1);
+	color:#111;
+	border-radius:4px;
+}
+.comment-list-loadmore:hover , .comment-list-loadmore:active{
+	background: rgba(0,0,0,.2);
 }
 
 /*登录*/
