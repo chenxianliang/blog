@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>cZone</title>
+    <meta charset="utf-8" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin.css" rel="stylesheet">
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <section class="wrap">
+        <h1 class="title">留言列表</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>留言人</th>
+                    <th>ip</th>  
+                    <th>内容</th>    
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% messages.forEach(function (message, index) { %>
+                    <tr class="<% if(index %2 == 0){ %>
+                        success
+                     <% }else{ %>       
+                        warning
+                     <%} %>">
+                        <td><%= index + 1 %></td>
+                        <td><%= message.author%></td>
+                        <td><%= message.ip %></td>
+                        <td><%= message.content %></td>
+                        <td>
+                            <a href="/admin/message_edit/<%=message.id%>"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="/admin/message_remove/<%=message.id%>" onclick = "return confirm('确定删除此留言?')" class="col-sm-offset-1"><i class="glyphicon glyphicon-remove"></i></a>
+                        </td>
+                    </tr>
+                <% }) %>
+                <% if(messages.length == 0){ %>
+                    <tr class="success">
+                        <td colspan="5" style="text-align:center;">当前没有数据...</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </section>
+    <script>
+    <%
+    if (success) { %>
+        alert('<%=success%>'); <%
+    } else if (error) { %>
+        alert('操作失败：<%= error %>'); <%
+    } %>
+    </script>
+</body>
+</html>

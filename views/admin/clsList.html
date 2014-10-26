@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>cZone</title>
+    <meta charset="utf-8" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin.css" rel="stylesheet">
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <section class="wrap">
+        <h1 class="title">类别管理</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>名字</th>
+                    <th>排序</th>      
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% cls.forEach(function (c, index) { %>
+                    <tr class="<% if(index %2 == 0){ %>
+                        success
+                     <% }else{ %>       
+                        warning
+                     <%} %>">
+                        <td><%= index + 1 %></td>
+                        <td><%= c.content%></td>
+                        <td><%= c.sort%></td>
+                        <td>
+                            <a href="/admin/cls_edit/<%=c.id%>"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="/admin/cls_remove/<%=c.id%>" onclick = "return confirm('确定删除此类别?')" class="col-sm-offset-1"><i class="glyphicon glyphicon-remove"></i></a>
+                        </td>
+                    </tr>
+                <% }) %>
+                <% if(cls.length == 0){ %>
+                    <tr class="success">
+                        <td colspan="4" style="text-align:center;">当前没有数据...</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </section>
+    <script>
+    <%
+    if (success) { %>
+        alert('<%=success%>'); <%
+    } else if (error) { %>
+        alert('操作失败：<%= error %>'); <%
+    } %>
+    </script>
+</body>
+</html>

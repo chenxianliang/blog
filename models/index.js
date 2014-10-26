@@ -15,7 +15,11 @@ mongoose.connect(dburl, function (err) {
 require('./user');
 require('./topic');
 require('./reply');
+require('./cls');
+require('./message');	
 
 exports.User = mongoose.model('User');
 exports.Topic = mongoose.model('Topic');
 exports.Reply = mongoose.model('Reply');
+exports.Cls = mongoose.model('Cls');
+exports.Message = mongoose.model('Message');

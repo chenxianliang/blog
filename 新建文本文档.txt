@@ -1,1 +1,3 @@
 安装 mongodb ，python .net framework
+
+发布时 用pm2

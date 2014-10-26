@@ -1,39 +1,53 @@
 <div class="right-part count">
-                  <h3 class="right-part-title">文章归档</h3>
-                  <ul>
-                    <li><a href="#">2014年10月(12)</a></li>
-                    <li><a href="#">2014年10月(12)</a></li>
-                    <li><a href="#">2014年10月(12)</a></li>
-                  </ul>
-              </div>
+    <h3 class="right-part-title">文章归档</h3>
+    <ul>
+      <%
+        function formatDate(date){
+          return date.replace(/(\d+)\-(\d+)/,function($0,$1,$2){
+            return $1 + '年' + $2 + '月';
+          })
+        }
+      %>
+      <% for(var attr in group){ %>
+        <li><a href="/date/<%= attr %>"><%= formatDate(attr) %>(<%= group[attr] %>)</a></li>
+      <%  } %>
+    </ul>
+</div>
 
-              <div class="right-part message">
-                  <h3 class="right-part-title">最新留言</h3>
-                  <div class="message-item">
-                      <div class="message-authar clearfix">
-                          <span class="fl message-name">小俊俊</span>
-                          <span class="fr message-time">三天前</span>
-                      </div>
-                      <p class="message-info">
-                        放假了发生口角化肥空间阿十分愧疚啊上课放假阿什科夫哈萨克几乎疯狂撒化肥看哈
-                      </p>
-                  </div>
-                   <div class="message-item">
-                      <div class="message-authar clearfix">
-                          <span class="fl message-name">小俊俊</span>
-                          <span class="fr message-time">三天前</span>
-                      </div>
-                      <p class="message-info">
-                        放假了发生口角化肥空间阿十分愧疚啊上课放假阿什科夫哈萨克几乎疯狂撒化肥看哈
-                      </p>
-                  </div>
-                   <div class="message-item">
-                      <div class="message-authar clearfix">
-                          <span class="fl message-name">小俊俊</span>
-                          <span class="fr message-time">三天前</span>
-                      </div>
-                      <p class="message-info">
-                        放假了发生口角化肥空间阿十分愧疚啊上课放假阿什科夫哈萨克几乎疯狂撒化肥看哈
-                      </p>
-                  </div>
-              </div>
+<div class="right-part message">
+    <h3 class="right-part-title">最新留言</h3>
+    <% message.forEach(function(m){ %>
+        <div class="message-item">
+          <div class="message-authar clearfix">
+              <span class="fl message-name"><%= m.author %></span>
+              <span class="fr message-time"><%= m.create_at.minute %></span>
+          </div>
+          <p class="message-info">
+            <%- m.content %>
+          </p>
+      </div>
+    <% }) %>
+</div>
+
+<div class="right-part message-add">
+    <h3 class="right-part-title">对网站说点啥</h3>
+    <textarea name="" class="message-add-txt" placeholder="说点什么"></textarea>
+    <div class="message-add-author clearfix">
+        <span class="message-add-pre fl">用户名：</span>
+        <input type="text" class="fl message-add-name" value="" placeholder="请输入用户名" />
+        <button type="button" class="btn btn-default fr message-add-btn">提 交</button>
+    </div>
+</div>
+
+<div class="js_message_templete" style="display: none;">
+    <div class="message-item">
+      <div class="message-authar clearfix">
+          <span class="fl message-name"></span>
+          <span class="fr message-time">刚刚</span>
+      </div>
+      <p class="message-info">
+          
+      </p>
+  </div>
+</div>
+

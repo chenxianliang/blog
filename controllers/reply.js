@@ -19,7 +19,7 @@ var ReplyModel = models.Reply;
  * @return {[type]}     [description]
  */
 exports.ajaxAdd = function(req, res) {
-    var content = req.body.content || '',
+    var content = req.body.content.replace(/\</g,'&lt').replace(/\>/g,'&gt').trim() || '',
         reply_id = req.body.reply_id || null,
         ip = req.body.ip || '',
         topicId = req.body.topicId;

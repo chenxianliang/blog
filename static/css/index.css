@@ -84,6 +84,8 @@ body.side-active{
 .article-img{
 	border:1px solid #f1f1f1;
 	box-shadow: 0px 0px 5px #f1f1f1;
+	width: 90px;
+	height: 90px;
 }
 .article-post{
 	width:475px;
@@ -156,6 +158,32 @@ body.side-active{
 	line-height: 24px;
 	font-size: 14px;
 	margin: 10px 0;
+}
+
+.right-part .message-add-txt{
+	width:100%;
+	height:60px;
+	color:#111;
+	display: block;
+	margin: 0 auto;
+}
+.right-part .message-add-author{
+	height:30px;
+	line-height: 30px;
+	margin: 15px 0;
+}
+.right-part .message-add-name{
+	box-sizing:content-box;
+	height:24px;
+	width:130px;
+	line-height: 24px;
+	border-radius:2px;
+	text-indent: 5px;
+	color:#111;
+}
+.right-part .message-add-btn{
+	height:30px;
+	line-height:16px;
 }
 
 

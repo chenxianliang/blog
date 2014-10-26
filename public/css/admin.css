@@ -30,3 +30,15 @@ textarea{
 .publish{
 	margin: 30px 0;
 }
+.pager{
+	text-align: right;
+	padding-right: 10px;
+	color:#111;
+}
+.pager a ,.pager span{
+	padding: 0 8px;
+}
+
+.pager a {
+	font-weight: bold;
+}

@@ -3,6 +3,7 @@ var models = require('../models');
 var Topic = models.Topic;
 var User = require('./user');
 var Reply = require('./reply');
+var Cls = require('./cls');
 
 
 /**
@@ -17,12 +18,12 @@ var Reply = require('./reply');
  */
 exports.getTopicById = function (id, callback) {
   var proxy = new EventProxy();
-  var events = ['topic', 'author', 'last_reply'];
-  proxy.assign(events, function (topic, author, last_reply) {
+  var events = ['topic', 'author', 'last_reply','cls'];
+  proxy.assign(events, function (topic, author, last_reply,cls) {
     if (!author) {
-      return callback(null, null, null, null);
+      return callback(null, null, null, null,null);
     }
-    return callback(null, topic, author, last_reply);
+    return callback(null, topic, author, last_reply,cls);
   }).fail(callback);
 
   Topic.findOne({_id: id}, proxy.done(function (topic) {
@@ -30,6 +31,7 @@ exports.getTopicById = function (id, callback) {
       proxy.emit('topic', null);
       proxy.emit('author', null);
       proxy.emit('last_reply', null);
+      proxy.emit('cls', null);
       return;
     }    
     proxy.emit('topic', topic);
@@ -43,6 +45,51 @@ exports.getTopicById = function (id, callback) {
     } else {
       proxy.emit('last_reply', null);
     }
+    Cls.getCls(topic.cls,proxy.done('cls'));
+  }));
+};
+
+
+/**
+ * 根据优化地址获取主题
+ * Callback:
+ * - err, 数据库错误
+ * - topic, 主题
+ * - author, 作者
+ * - lastReply, 最后回复
+ * @param {String} id 主题ID
+ * @param {Function} callback 回调函数
+ */
+exports.getTopicByAddress = function (address, callback) {
+  var proxy = new EventProxy();
+  var events = ['topic', 'author', 'last_reply','cls'];
+  proxy.assign(events, function (topic, author, last_reply,cls) {
+    if (!author) {
+      return callback(null, null, null, null,null);
+    }
+    return callback(null, topic, author, last_reply,cls);
+  }).fail(callback);
+
+  Topic.findOne({address: address}, proxy.done(function (topic) {
+    if (!topic) {
+      proxy.emit('topic', null);
+      proxy.emit('author', null);
+      proxy.emit('last_reply', null);
+      proxy.emit('cls', null);
+      return;
+    }    
+    proxy.emit('topic', topic);
+
+    User.getUserById(topic.author_id, proxy.done('author'));
+
+    if (topic.last_reply) {
+      Reply.getReplyById(topic.last_reply, proxy.done(function (last_reply) {
+        proxy.emit('last_reply', last_reply);
+      }));
+    } else {
+      proxy.emit('last_reply', null);
+    }
+    Cls.getCls(topic.cls,proxy.done('cls'));
   }));
 };
 
@@ -95,13 +142,14 @@ exports.getTopicsByQuery = function (query, opt, callback) {
     proxy.fail(callback);
 
     topics_id.forEach(function (id, i) {
-      exports.getTopicById(id, proxy.group('topic_ready', function (topic, author, last_reply) {
+      exports.getTopicById(id, proxy.group('topic_ready', function (topic, author, last_reply,cls) {
         // 当id查询出来之后，进一步查询列表时，文章可能已经被删除了
         // 所以这里有可能是null
         if (topic) {
          // topic = JSON.parse(JSON.stringify( topic ));
           topic.author = author;
           topic.reply = last_reply;
+          topic.oCls = cls;
         }
         return topic;
       }));

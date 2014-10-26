@@ -17,6 +17,8 @@
                 <tr>
                     <th>序号</th>
                     <th>标题</th>
+                    <th>优化地址</th>
+                    <th>类别</th>
                     <th>状态</th>                    
                     <th>发布日期</th>
                     <th>修改日期</th>
@@ -25,6 +27,14 @@
             </thead>
             <tbody>
                 <% topics.forEach(function (topic, index) { %>
+                    <%
+                        var href = '';
+                        if(topic.address){
+                            href = '/html/' + topic.address;
+                        }else{
+                            href = '/topic/' + topic.id;
+                        }
+                    %>
                     <tr class="<% if(index %2 == 0){ %>
                         success
                      <% }else{ %>       
@@ -32,17 +42,47 @@
                      <%} %>">
                         <td><%= index + 1 %></td>
                         <td><%= topic.title%></td>
+                        <td><%= topic.address || '未优化' %></td>
+                        <td><%= topic.oCls ? topic.oCls.content : '' %></td>
                         <td>
                             <%= topic.out ? '已发布' : '未发布' %>
                         </td>
                         <td><%= topic.create_at.minute%></td>
                         <td><%= topic.update_at.minute || ''%> </td>
-                        <td>
-                            <a href="/admin/topic_edit/<%=topic.id%>"><i class="glyphicon glyphicon-edit"></i></a>
+                        <td>    
+                            <a href="<%= href %>" target="_blank"><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a href="/admin/topic_edit/<%=topic.id%>" class="col-sm-offset-1"><i class="glyphicon glyphicon-edit"></i></a>
                             <a href="/admin/topic_remove/<%=topic.id%>" onclick = "return confirm('确定删除此篇文章?')" class="col-sm-offset-1"><i class="glyphicon glyphicon-remove"></i></a>
                         </td>
                     </tr>
                 <% }) %>
+                <% if(topics.length == 0){ %>
+                    <tr class="success">
+                        <td colspan="8" style="text-align:center;">当前没有数据...</td>
+                    </tr>
+                <% }else{ %>
+                    <tr style="background: #f1f1f1;">
+                        <td colspan="8" class="pager">
+                              <% if( !(isLastPage && isFirstPage) ){ %>
+                                  <% if (!isFirstPage) { %>
+                                    <a href="?page=1">首页</a>
+                                    <a href="?page=<%= page - 1 %>">上一页</a>
+                                  <% } else{%>
+                                    <span>首页</span>
+                                    <span>上一页</span>
+                                  <%}%>
+
+                                  <% if (!isLastPage) { %>
+                                    <a href="?page=<%= page + 1%>">下一页</a>
+                                    <a href="?page=<%= pageCount %>">尾页</a>
+                                  <% } else{%>
+                                    <span>下一页</span>
+                                    <span>尾页</span>
+                                  <% } %>
+                             <% } %>  
+                        </td>
+                    </tr>
+                <% } %>
             </tbody>
         </table>
     </section>

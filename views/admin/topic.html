@@ -51,7 +51,7 @@
                             <% if(topic){ %>
                                 <input type="hidden" name="thumb_pic" value="<%=topic.thumb_pic%>" id="thumb_pic">
                             <% }else{%>
-                                <input type="hidden" name="thumb_pic" value="images/short.png" id="thumb_pic">
+                                <input type="hidden" name="thumb_pic" value="/images/short.png" id="thumb_pic">
                             <% } %> 
                         </div>
                     </div>
@@ -80,10 +80,17 @@
                 <label for="cls" class="col-sm-1 control-label">文章分类</label>
                 <div class="col-sm-4">
                     <select class="form-control" name="cls">
-                        <option value="node.js">node.js</option>
-                        <option value="javascript">javascript</option>
-                        <option value="html/css">html/css</option>
-                        <option value="html5/css3">html5/css3</option>
+                        <%
+                            function setSelect( tId,id ){
+                                if(topic &&  tId == id){
+                                    return 'selected';
+                                }
+                                return '';
+                            }
+                        %>
+                        <% cls.forEach(function(c,i){ %>
+                            <option value="<%= c['_id'] %>"  <%= setSelect(c['_id'] , topic? topic.cls: -9999) %> ><%= c.content %></option>
+                        <% }) %>
                     </select>
                 </div>
             </div>
