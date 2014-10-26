@@ -11,37 +11,39 @@
 
 <body>
     <section class="wrap">
-        <h1 class="title">类别管理</h1>
+        <h1 class="title">友链管理</h1>
         <table class="table">
             <thead>
                 <tr>
                     <th>序号</th>
-                    <th>名字</th>
+                    <th>网址</th>
                     <th>显示名字</th>
-                    <th>排序</th>      
+                    <th>排序</th> 
+                    <th>是否解锁</th>     
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
-                <% cls.forEach(function (c, index) { %>
+                <% link.forEach(function (l, index) { %>
                     <tr class="<% if(index %2 == 0){ %>
                         success
                      <% }else{ %>       
                         warning
                      <%} %>">
                         <td><%= index + 1 %></td>
-                        <td><%= c.content%></td>
-                        <td><%= c.display_name%></td>
-                        <td><%= c.sort%></td>
+                        <td><%= l.url%></td>
+                        <td><%= l.name%></td>
+                        <td><%= l.sort%></td>
+                        <td><%= l.is_lock ? '是' : '否' %></td>
                         <td>
-                            <a href="/admin/cls_edit/<%=c.id%>"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a href="/admin/cls_remove/<%=c.id%>" onclick = "return confirm('确定删除此类别?')" class="col-sm-offset-1"><i class="glyphicon glyphicon-remove"></i></a>
+                            <a href="/admin/link_edit/<%=l.id%>"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="/admin/link_remove/<%=l.id%>" onclick = "return confirm('确定删除此类别?')" class="col-sm-offset-1"><i class="glyphicon glyphicon-remove"></i></a>
                         </td>
                     </tr>
                 <% }) %>
-                <% if(cls.length == 0){ %>
+                <% if(link.length == 0){ %>
                     <tr class="success">
-                        <td colspan="5" style="text-align:center;">当前没有数据...</td>
+                        <td colspan="6" style="text-align:center;">当前没有数据...</td>
                     </tr>
                 <% } %>
             </tbody>

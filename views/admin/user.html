@@ -13,19 +13,31 @@
 <body>
     <section class="wrap">
         <h1 class="title">用户管理</h1>
-        <form class="form-horizontal " role="form" action="/admin/addUser" method="post">
+        <% if(users) {%>
+            <form class="form-horizontal " role="form" action="/admin/user_modify" method="post">
+        <%} else { %>
+            <form class="form-horizontal " role="form" action="/admin/addUser" method="post">
+        <%}%>
             <div class="form-group form-group-sm">
                 <label for="loginname" class="col-sm-1 control-label">登录名</label>
                 <div class="col-sm-4">
-                    <input type="text" id="loginname" class="form-control" name="loginname" placeholder="请输入登录名">
+                    <input type="text" id="loginname" class="form-control" name="loginname" value="<%= users ? users.loginname : '' %>" placeholder="请输入登录名">
                 </div>
             </div>
             <div class="form-group form-group-sm">
                 <label for="name" class="col-sm-1 control-label">用户名</label>
                 <div class="col-sm-4">
-                    <input type="text" id="name" class="form-control" name="name" placeholder="请输入用户名">
+                    <input type="text" id="name" class="form-control" name="name" value="<%= users ? users.name : '' %>" placeholder="请输入用户名">
                 </div>
             </div>
+            <% if(users) {%>
+            <div class="form-group form-group-sm">
+                <label for="oldPass" class="col-sm-1 control-label">旧密码</label>
+                <div class="col-sm-4">
+                    <input type="password" id="oldPass" name="oldPass" class="form-control" placeholder="请输入旧密码">
+                </div>
+            </div>
+            <%}%>
             <div class="form-group form-group-sm">
                 <label for="pass" class="col-sm-1 control-label">密码</label>
                 <div class="col-sm-4">
@@ -41,21 +53,25 @@
             <div class="form-group form-group-sm">
                 <label for="email" class="col-sm-1 control-label">E-Mail</label>
                 <div class="col-sm-4">
-                    <input type="text" id="email" name="email" class="form-control" placeholder="请输入邮箱地址">
+                    <input type="text" id="email" name="email" class="form-control" value="<%= users ? users.email : '' %>"  placeholder="请输入邮箱地址">
                 </div>
             </div>
             <div class="form-group publish">
                 <div class="col-sm-11 col-sm-offset-1">
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <% if(users) {%>
+                        <button type="submit" class="btn btn-primary">Modify</button>
+                    <%} else { %>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    <%}%>
                 </div>
             </div>
         </form>
     </section>
     <script>
     <% if (success) {%>
-       alert('添加成功！'); 
+       alert('操作成功！'); 
     <% }else if(error){%>
-        alert('添加失败：<%= error %>' ); 
+        alert('操作失败：<%= error %>' ); 
     <%} %>
     </script>
 </body>

@@ -96,11 +96,11 @@
     <div class="navbar navbar-duomi navbar-static-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/Admin/index.html" id="logo">cZone 管理平台
+                <a class="navbar-brand" href="/admin" id="logo">cZone 管理平台
                 </a>
             </div>
             <div>
-                <p class="navbar-text navbar-right">当前管理员：
+                <p class="navbar-text navbar-right">当前管理员：<%= user.name %>
                      <a href="/logout" class="navbar-link">退出</a>
                 </p>
             </div>
@@ -111,7 +111,7 @@
             <div class="col-md-2">
                 <ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
                     <li class="active">
-                        <a href="#">
+                        <a href="/admin">
                             <i class="glyphicon glyphicon-th-large"></i>
                             首页 		
                         </a>
@@ -161,6 +161,17 @@
                             <li><a href="/admin/message_list" target="iframeMain"><i class="glyphicon glyphicon-list-alt"></i>留言列表</a></li>
                         </ul>
                     </li>
+                     <li>
+                        <a href="#link" class="nav-header collapsed" data-toggle="collapse">
+                            <i class="glyphicon glyphicon-comment"></i>
+                            友链管理
+                               <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <ul id="link" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                            <li><a href="/admin/link_list" target="iframeMain"><i class="glyphicon glyphicon-list-alt"></i>友链列表</a></li>
+                            <li><a href="/admin/addLink" target="iframeMain"><i class="glyphicon glyphicon-plus"></i>增加友链</a></li>
+                        </ul>
+                    </li>
                     
 
                     <li>
@@ -171,23 +182,16 @@
                         </a>
                         <ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
                             <li><a href="/admin/config" target="iframeMain"><i class="glyphicon glyphicon-edit"></i>系统变量</a></li>
+                            <li><a href="/admin/user_modify" target="iframeMain"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>
                             <li><a href="#"><i class="glyphicon glyphicon-th-list"></i>文件管理</a></li>
                             <li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>角色管理</a></li>
-                            <li><a href="#"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>
                             <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="./grid.html">
-                            <i class="glyphicon glyphicon-globe"></i>
-                            友情链接
-                        </a>
-                    </li>
-
                 </ul>
             </div>
             <div class="col-md-10" style="height:100%">
-                <iframe src="/admin/addUser" frameborder="0" name="iframeMain" id="iframeMain"></iframe>
+                <iframe src="/admin/topic_list" frameborder="0" name="iframeMain" id="iframeMain"></iframe>
             </div>
         </div>
     </div>

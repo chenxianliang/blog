@@ -58,6 +58,91 @@ exports.add = function(req, res) {
     })
 }
 
+exports.showEdit = function(req, res) {
+    var id = req.session.user['_id'];
+    User.getUserById(id,function(err,u){
+        if(err){
+            req.flash('error','用户不存在');
+            return res.redirect('back');
+        }
+        res.render('admin/user.html', {
+            title: '修改用户',
+            users:u,
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    })
+}
+
+exports.saveEdit = function(req,res){
+    var id = req.session.user['_id'];
+    var loginname = req.body.loginname;
+    var name = req.body.name;
+    var pass = req.body.pass;
+    var pass2 = req.body.pass2;
+    var email = req.body.email;
+    var oldPass = req.body.oldPass;
+
+    var oldPassMd5 = crypto.encode('hash', 'md5', oldPass, 'hex');
+    var passMd5 = crypto.encode('hash', 'md5', pass, 'hex');
+
+    if(pass != pass2){
+        req.flash('error', '有必要信息未填!');
+        return res.redirect('back');
+    }
+
+    if (loginname =='' || name == '' || pass == '') {
+        req.flash('error', '有必要信息未填!');
+        return res.redirect('back');
+    }
+
+    User.getUserById(id, function(err,u) {
+        if (err) {
+            req.flash('error', '未知错误!');
+            return res.redirect('back');
+        }
+        if (!u) {
+            req.flash('error', '用户已经不存在!');
+            return res.redirect('/admin');
+        }
+        if(oldPassMd5 != u.pass){
+            req.flash('error', '原密码错误!');
+            return res.redirect('/admin');
+        }
+        u.loginname = loginname;
+        u.name = name;
+        u.pass = passMd5;
+        u.email = email;
+        
+        u.save(function(err) {
+            if (err) {
+                req.flash('error', '更新失败!');
+            }
+            req.flash('success', '更新成功!');
+            res.redirect('back');
+        });
+    })
+}
+
+exports.list = function(req, res) {
+    var options = {}
+
+    User.getUsersByQuery({}, options, function(err, users) {
+        if (err) {
+            console.log(err);
+            return res.redirect('back');
+        }
+        res.render('admin/userList.html', {
+            title: '添加类别',
+            users: users,
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    });
+}
+
 exports.logout = function(req, res) {
     req.session.user = null;
     res.redirect('/admin_login');
@@ -84,17 +169,17 @@ exports.loginAction = function(req, res) {
             req.flash('error', '未知错误!');
             return res.redirect('/admin_login');
         }
-        if(!user){
+        if (!user) {
             req.flash('error', '用户名不存在!');
             return res.redirect('/admin_login');
         }
-        var pass = crypto.encode('hash','md5',password,'hex');
-        if(pass != user.pass){
+        var pass = crypto.encode('hash', 'md5', password, 'hex');
+        if (pass != user.pass) {
             req.flash('error', '密码错误!');
             return res.redirect('/admin_login');
         }
         user.id = user['_id'];
-        req.session.user = user ;
+        req.session.user = user;
         res.redirect('/admin');
     })
 }

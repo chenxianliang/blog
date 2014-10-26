@@ -1,9 +1,9 @@
-var Cls = require('../proxy/cls');
+var Links = require('../proxy/links');
 
 exports.showAdd = function(req, res) {
-    res.render('admin/cls.html', {
-        title: '添加类别',
-        cls:null,
+    res.render('admin/link.html', {
+        title: '添加链接',
+        link: null,
         user: req.session.user,
         success: req.flash('success').toString(),
         error: req.flash('error').toString()
@@ -11,10 +11,14 @@ exports.showAdd = function(req, res) {
 }
 
 exports.add = function(req, res) {
-
-    var content = req.body.content;
-    var display_name = req.body.display_name;
-    Cls.newAndSave(content,display_name, function(err, obj) {
+    var url = req.body.url;
+    var name = req.body.name;
+    var is_lock = req.body.is_lock;
+    if (url == '' || name == '') {
+        req.flash('error', '信息不能为空!');
+        return res.redirect('back');
+    }
+    Links.newAndSave(url, name, is_lock, function(err, obj) {
         if (err) {
             req.flash('error', '保存失败!');
             return res.redirect('back');
@@ -26,66 +30,66 @@ exports.add = function(req, res) {
 
 exports.list = function(req, res) {
     var options = {
-        sort: 'sort'
+        sort: '-is_lock'
     }
 
-    Cls.getClsByQuery({}, options, function(err, cls) {
+    Links.getLinksByQuery({}, options, function(err, link) {
         if (err) {
             console.log(err);
             return res.redirect('back');
         }
-        res.render('admin/clsList.html', {
-            title: '添加类别',
-            cls: cls,
+        res.render('admin/linkList.html', {
+            title: '友链列表',
+            link: link,
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
         });
-    })
+    });
 }
 
-exports.showEdit = function(req,res){
+exports.showEdit = function(req, res) {
     var id = req.params.id;
-    Cls.getCls(id,function(err,cls){
-        if(err){
-            req.flash('error','类别已经不存在');
+    Links.getLink(id, function(err, link) {
+        if (err) {
+            req.flash('error', '类别已经不存在');
             return res.redirect('back');
         }
-        res.render('admin/cls.html', {
-            title: '添加类别',
-            cls:cls,
+        res.render('admin/link.html', {
+            title: '修改友链',
+            link: link,
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
         });
+
     })
 }
 
-
-exports.saveEdit = function(req,res){
+exports.saveEdit = function(req, res) {
     var id = req.body.id;
-    var oCls = {
-        content: req.body.content,
-        display_name:req.body.display_name
+    var oLinks = {
+        url: req.body.url,
+        name: req.body.name,
+        is_lock: req.body.is_lock
     }
-    if (!oCls.content) {
+    if (!oLinks.url || !oLinks.name) {
         req.flash('error', '有必要信息未填!');
         return res.redirect('back');
     }
-
-    Cls.getCls(id, function(err,cls) {
+    Links.getLink(id, function(err, link) {
         if (err) {
             req.flash('error', '未知错误!');
             return res.redirect('back');
         }
-        if (!cls) {
+        if (!link) {
             req.flash('error', '类别已经不存在!');
             return res.redirect('/admin/cls_list');
         }
-        for (var attr in oCls) {
-            cls[attr] = oCls[attr];
+        for (var attr in oLinks) {
+            link[attr] = oLinks[attr];
         }
-        cls.save(function(err) {
+        link.save(function(err) {
             if (err) {
                 req.flash('error', '更新失败!');
             }

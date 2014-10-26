@@ -73,9 +73,21 @@ exports.getUsersByIds = function (ids, callback) {
  * @param {Object} opt 选项
  * @param {Function} callback 回调函数
  */
-exports.getUsersByQuery = function (query, opt, callback) {
-  User.find(query, '', opt, callback);
-};
+exports.getUsersByQuery = function(query, opt, callback) {
+    if(!opt){
+        callback = opt;
+        opt = {};
+    }
+    User.find(query, '', opt, function(err, user) {
+        if (err) {
+            return callback(err);
+        }
+        if (user.length === 0) {
+            return callback(null, []);
+        }
+        callback(null,user);
+    })
+}
 
 
 exports.newAndSave = function (name, loginname, pass, email,callback) {

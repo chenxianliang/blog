@@ -3,6 +3,8 @@ var Topic = require('../proxy/topic');
 var Reply = require('../proxy/reply');
 var Message = require('../proxy/message');
 var Cls = require('../proxy/cls');
+var Links = require('../proxy/links');
+
 var models = require('../models');
 var getTime = require('../tool/getTime');
 var TopicModel = models.Topic;
@@ -10,6 +12,7 @@ var ReplyModel = models.Reply;
 var iphelp = require('../tool/ip');
 var fs = require('fs');
 var path = require('path');
+var sys = require('../settings');
 
 
 var EventProxy = require('eventproxy');
@@ -94,11 +97,11 @@ exports.blist = function(req, res) {
 
     var proxy = new EventProxy();
 
-    proxy.all('topic','count', function(topic,count) {
+    proxy.all('topic', 'count', function(topic, count) {
         res.render('admin/topicList.html', {
             title: '文章列表',
             topics: topic,
-            page : page,
+            page: page,
             isFirstPage: (page - 1) == 0,
             isLastPage: Math.ceil(count / once) == page,
             pageCount: Math.ceil(count / once),
@@ -232,13 +235,15 @@ exports.showItem = function(req, res) {
 
     var proxy = new EventProxy();
 
-    proxy.all('topic', 'author', 'reply', 'count', 'cls', 'group', 'message', function(topic, author, reply, count, cls, group, message) {
+    proxy.all('topic', 'author', 'reply', 'count', 'cls', 'group', 'message', 'link', function(topic, author, reply, count, cls, group, message, link) {
         res.render('detail.html', {
             title: topic.title,
             topic: topic,
             reply: reply,
             author: author,
             message: message,
+            link: link,
+            sys: sys,
             next_reply: count > once,
             ip: iphelp.getip(req),
             group: group,
@@ -268,6 +273,14 @@ exports.showItem = function(req, res) {
         limit: 10
     }, function(err, message) {
         proxy.emit('message', message);
+    });
+
+    Links.getLinksByQuery({
+        is_lock: true
+    }, {
+        sort: 'sort'
+    }, function(err, link) {
+        proxy.emit('link', link);
     });
 
     Topic.getTopicById(id, function(err, topic, author, reply) {
@@ -315,13 +328,15 @@ exports.showItem_address = function(req, res) {
 
     var proxy = new EventProxy();
 
-    proxy.all('topic', 'author', 'reply', 'count', 'cls', 'group', 'message', function(topic, author, reply, count, cls, group, message) {
+    proxy.all('topic', 'author', 'reply', 'count', 'cls', 'group', 'message', 'link', function(topic, author, reply, count, cls, group, message, link) {
         res.render('detail.html', {
             title: topic.title,
             topic: topic,
             author: author,
             reply: reply,
             message: message,
+            link: link,
+            sys: sys,
             next_reply: count > once,
             ip: iphelp.getip(req),
             group: group,
@@ -333,6 +348,12 @@ exports.showItem_address = function(req, res) {
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
         });
+    });
+
+    Links.getLinksByQuery({}, {
+        sort: '-sort'
+    }, function(err, link) {
+        proxy.emit('link', link);
     });
 
     Topic.getTopicsByQuery({}, {}, function(err, docs) {

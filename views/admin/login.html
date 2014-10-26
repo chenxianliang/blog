@@ -1,4 +1,20 @@
-<%- include ../header.html %>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>cZone 
+    </title>
+    <meta charset="utf-8" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/all.js"></script>
+</head>
+
+<body>
+    
+ 
     <div class="container login-wrap">
     <form action="/admin_login" class="form-signin" role="form" method="post">
         <h2 class="form-signin-heading">用户登录</h2>
@@ -28,4 +44,14 @@
         alert('登录失败：<%= error %>' ); 
     <%} %>
 </script>
-<%- include ../footer.html %>
+
+<section class="side-bar"></section>
+<script>
+var $menu = $('.navbar').find('.menu');
+$menu.on('click', function() {
+    $('body').toggleClass('side-active');
+})
+</script>
+</body>
+</html>
+

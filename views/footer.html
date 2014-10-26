@@ -1,24 +1,22 @@
-<section class="link wrap">
+<% if(link.length){ %>
+    <section class="link wrap">
         <span class="link-pre">友情链接：</span>
-        <a href="#">百度</a>
-        <a href="#">百度</a>
-        <a href="#">百度</a>
-        <a href="#">百度</a>
-        <a href="#">百度</a>
-        <a href="#">百度</a>
+<% } %>
+<% link.forEach(function(l){ %>
+<a href="<%= l.url %>" target="_blank"><%= l.name %></a>
+<% })%>
+<% if(link.length){ %>
     </section>
-    <footer>
-        author：cxl &nbsp;&nbsp;&nbsp;&nbsp;QQ：464896740
-    </footer>
-    <section class="side-bar"></section>
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/all.js"></script>
-    <script>
-    var $menu = $('.navbar').find('.menu');
-    $menu.on('click', function() {
-        $('body').toggleClass('side-active');
-    })
-    </script>
+<% } %>
+<footer>
+    作者：<%= sys.author %> &nbsp;&nbsp;&nbsp;&nbsp;QQ：<%= sys.qq %>
+</footer>
+<section class="side-bar"></section>
+<script>
+var $menu = $('.navbar').find('.menu');
+$menu.on('click', function() {
+    $('body').toggleClass('side-active');
+})
+</script>
 </body>
 </html>

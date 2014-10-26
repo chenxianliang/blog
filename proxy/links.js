@@ -1,5 +1,5 @@
 var models = require('../models');
-var Cls = models.Cls;
+var Links = models.Links;
 var EventProxy = require('eventproxy');
 
 
@@ -8,8 +8,8 @@ var EventProxy = require('eventproxy');
  * @param {String} id 类别ID
  * @param {Function} callback 回调函数
  */
-exports.getCls = function(id, callback) {
-    Cls.findOne({
+exports.getLink = function(id, callback) {
+    Links.findOne({
         _id: id
     }, callback);
 }
@@ -20,30 +20,30 @@ exports.getMaxSort = function(callback) {
         limit: 1,
         sort: '-sort'
     };
-    Cls.findOne({}, '', options, function(err, c) {
+    Links.findOne({}, '', options, function(err, link) {
         if (err) {
             return console.log('出错了');
         }
-        if (!c) {
+        if (!link) {
             return callback(null, 0);
         }
-        callback(null, c.sort);
+        callback(null, link.sort);
     })
 }
 
-exports.getClsByQuery = function(query, opt, callback) {
+exports.getLinksByQuery = function(query, opt, callback) {
     if(!opt){
         callback = opt;
         opt = {};
     }
-    Cls.find(query, '', opt, function(err, cls) {
+    Links.find(query, '', opt, function(err, link) {
         if (err) {
             return callback(err);
         }
-        if (cls.length === 0) {
+        if (link.length === 0) {
             return callback(null, []);
         }
-        callback(null,cls);
+        callback(null,link);
     })
 }
 
@@ -51,14 +51,15 @@ exports.getClsByQuery = function(query, opt, callback) {
  * 创建并保存一条类别信息
  * @param {Function} callback 回调函数
  */
-exports.newAndSave = function(content,display_name, callback) {
-    var cls = new Cls();
-    cls.content = content;
-    cls.display_name = display_name;
+exports.newAndSave = function(url , name , is_lock , callback) {
+    var links = new Links();
+    links.url = url;
+    links.name = name;
+    links.is_lock = is_lock;
     exports.getMaxSort(function(err, sort) {
-        cls.sort = sort + 1;
-        cls.save(function(err) {
-            callback(err, cls);
+        links.sort = sort + 1;
+        links.save(function(err) {
+            callback(err, links);
         });
     });
 };

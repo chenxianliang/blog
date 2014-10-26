@@ -22,9 +22,11 @@
                             <img src="<%= topic.thumb_pic %>" alt="" class="article-img fl">
                         </a>
                         <div class="article-post fr">
-                            <p class="article-txt">
-                            	<%= topic.preview %>
-                            </p>
+                            <a href="<%= href %>">
+                                <p class="article-txt">
+                                	<%= topic.preview %>
+                                </p>
+                            </a>
                             <div class="article-author">
                                 <span class="article-pre">post by</span>
                                 <span class="article-name"><%= topic.author.name %></span>评论( <%= topic.reply_count %> )
@@ -34,7 +36,7 @@
                 </div>
 				<% }) %>
                 <div class="article-pager">
-                  <% if( !(isLastPage && isFirstPage) ){ %>
+                  <% if( pageCount > 1 ){ %>
                       <% if (!isFirstPage) { %>
                         <a href="/">首页</a>
                         <a href="?page=<%= page - 1 %>">上一页</a>

@@ -6,6 +6,7 @@ var ObjectId = Schema.ObjectId;
 
 var ClsSchema = new Schema({
   content: { type: String },
+  display_name: { type: String },
   sort:{type:Number},
 });
 

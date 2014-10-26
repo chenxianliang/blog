@@ -4,13 +4,15 @@ var rstring  = require('../tool/rstring');
 var getTime  = require('../tool/getTime');
 var ObjectId = Schema.ObjectId;
 
-var MessageSchema = new Schema({
-  content: { type: String },
-  author: { type: String },
+var LinksSchema = new Schema({
+  url: { type: String },
+  name: { type: String },
+  is_lock :{type:Boolean,default:false},
+  sort:{type:Number},
   create_at: { type: Object, default: getTime() },
   update_at: { type: Object, default: getTime() },
-  ip : {type:String},
 });
 
+LinksSchema.index({is_lock: -1});
 
-mongoose.model('Message', MessageSchema);
+mongoose.model('Links', LinksSchema);

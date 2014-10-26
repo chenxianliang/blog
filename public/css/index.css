@@ -53,7 +53,6 @@ body.side-active{
 	color:#777;
 }
 
-
 .side-bar{
 	position:fixed;
 	width:200px;
@@ -90,6 +89,13 @@ body.side-active{
 .article-post{
 	width:475px;
 }
+.article-post a{
+	color:#ccc;
+}
+.article-post a:hover{
+	text-decoration: none;
+}
+
 .article-txt{
 	font-size:14px;
 	line-height: 20px;
@@ -194,7 +200,7 @@ body.side-active{
 	line-height: 20px;
 	color:#ccc;
 	padding-left:20px;
-	margin-top:30px;
+	margin-top:20px;
 	margin-bottom: 20px;
 }
 .link a{

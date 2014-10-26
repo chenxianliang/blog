@@ -3,8 +3,11 @@ var Topic = require('../proxy/topic');
 var Reply = require('../proxy/reply');
 var Cls = require('../proxy/cls');
 var Message = require('../proxy/message');
+var Links = require('../proxy/links');
 
 var EventProxy = require('eventproxy');
+
+var sys = require('../settings');
 
 exports.showAdmin = function(req, res) {
     res.render('admin/index.html', {
@@ -40,7 +43,7 @@ exports.showIndex = function(req, res) {
     }
 
     var proxy = new EventProxy();
-    proxy.all('cls', 'topic', 'count', 'group', 'message', function(cls, topic, count, group, message) {
+    proxy.all('cls', 'topic', 'count', 'group', 'message', 'link', function(cls, topic, count, group, message, link) {
         res.render('index.html', {
             title: '首页',
             topics: topic,
@@ -48,6 +51,8 @@ exports.showIndex = function(req, res) {
             message: message,
             keyword: keyword,
             group: group,
+            link: link,
+            sys:sys,
             isHome: true,
             tab: null,
             page: page,
@@ -78,6 +83,11 @@ exports.showIndex = function(req, res) {
         proxy.emit('group', group);
     });
 
+    Links.getLinksByQuery({is_lock:true}, {
+        sort: 'sort'
+    }, function(err, link) {
+        proxy.emit('link', link);
+    });
 
     Topic.getTopicsByQuery(query, options, function(err, docs) {
         proxy.emit('topic', docs);
@@ -115,7 +125,7 @@ exports.showIndex_tab = function(req, res) {
 
 
     var proxy = new EventProxy();
-    proxy.all('cls', 'topic', 'count', 'group', 'message', function(cls, topic, count, group, message) {
+    proxy.all('cls', 'topic', 'count', 'group', 'message', 'link', function(cls, topic, count, group, message, link) {
         res.render('index.html', {
             title: '首页',
             topics: topic,
@@ -124,6 +134,8 @@ exports.showIndex_tab = function(req, res) {
             message: message,
             keyword: keyword,
             group: group,
+            link: link,
+            sys:sys,
             isHome: false,
             tab: clsName,
             isFirstPage: (page - 1) == 0,
@@ -134,6 +146,14 @@ exports.showIndex_tab = function(req, res) {
             error: req.flash('error').toString()
         });
     });
+
+    Links.getLinksByQuery({is_lock:true}, {
+        sort: 'sort'
+    }, function(err, link) {
+        proxy.emit('link', link);
+    });
+
+    fs.readFile('')
 
     Topic.getTopicsByQuery({}, {}, function(err, docs) {
         var group = {};

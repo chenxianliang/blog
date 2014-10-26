@@ -14,6 +14,7 @@
     "markdown":"*",
     "ueditor":"0.0.7",
     "mongoose":"*",
-    "eventproxy":"*"
+    "eventproxy":"*",
+    "request":"*"
   }
 }
