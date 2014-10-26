@@ -153,7 +153,6 @@ exports.showIndex_tab = function(req, res) {
         proxy.emit('link', link);
     });
 
-    fs.readFile('')
 
     Topic.getTopicsByQuery({}, {}, function(err, docs) {
         var group = {};
