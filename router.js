@@ -41,6 +41,9 @@ module.exports = function(app) {
     app.post('/admin/user_modify',checkLogin);
     app.post('/admin/user_modify',user.saveEdit);
 
+    app.get('/admin/user_remove/:id',checkLogin);
+    app.get('/admin/user_remove/:id',user.remove);
+
 
     //登录登出
     app.get('/logout',checkLogin);
@@ -118,6 +121,9 @@ module.exports = function(app) {
     //留言
     app.get('/admin/message_list',checkLogin);
     app.get('/admin/message_list',message.blist);
+
+    app.get('/admin/message_remove/:id',checkLogin);
+    app.get('/admin/message_remove/:id',message.remove);
 
 
 

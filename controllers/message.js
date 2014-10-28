@@ -14,7 +14,7 @@ exports.blist = function(req,res){
     var options = {
         skip: (page - 1) * once,
         limit: once,
-        sort: '-create_at.date'
+        sort: '-_id'
     };
 
     var query = {};
@@ -77,5 +77,24 @@ exports.ajaxAdd = function(req,res){
 	        return res.send(out);
         }
         proxy.emit('message',message);
+    });
+}
+
+
+exports.remove = function(req, res) {
+    var id = req.params.id;
+    Message.getMessage(id, function(err, msg) {
+        if (!msg) {
+            req.flash('error', '留言已经不存在!');
+            res.redirect('back');
+        }
+        msg.remove(function(err) {
+            if (err) {
+                req.flash('error', '删除失败!');
+                return res.redirect('back');
+            }
+            req.flash('success', '删除成功!');
+            res.redirect('back');
+        });
     });
 }

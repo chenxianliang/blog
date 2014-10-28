@@ -12,6 +12,7 @@ var EventProxy = require('eventproxy');
 exports.showAdd = function(req, res) {
     res.render('admin/user.html', {
         title: '添加管理员',
+        users:null,
         user: req.session.user,
         success: req.flash('success').toString(),
         error: req.flash('error').toString()
@@ -51,7 +52,6 @@ exports.add = function(req, res) {
                 return res.redirect('/admin/addUser'); //返回注册页
             }
             user.id = user['_id'];
-            req.session.user = user; //用户信息存入 session
             req.flash('success', '注册成功!');
             res.redirect('/admin/addUser'); //注册成功后返回主页
         })
@@ -123,6 +123,24 @@ exports.saveEdit = function(req,res){
             res.redirect('back');
         });
     })
+}
+
+exports.remove = function(req, res) {
+    var id = req.params.id;
+    User.getUserById(id, function(err, user) {
+        if (!user) {
+            req.flash('error', '用户已经不存在!');
+            res.redirect('back');
+        }
+        user.remove(function(err) {
+            if (err) {
+                req.flash('error', '删除失败!');
+                return res.redirect('back');
+            }
+            req.flash('success', '删除成功!');
+            res.redirect('back');
+        });
+    });
 }
 
 exports.list = function(req, res) {

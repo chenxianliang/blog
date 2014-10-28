@@ -23,7 +23,7 @@ exports.ajaxAdd = function(req, res) {
         reply_id = req.body.reply_id || null,
         ip = req.body.ip || '',
         topicId = req.body.topicId;
-    var authorId = 0;
+    var authorId = null;
 
     if (req.session.user) {
         authorId = req.session.user['_id'];
@@ -67,7 +67,7 @@ exports.ajaxload = function(req, res) {
     var options = {
         skip: (page - 1) * once,
         limit: once,
-        sort: '-create_at.date'
+        sort: '-_id'
     };
     Reply.getRepliesByQuery({
         'topic_id': topicId

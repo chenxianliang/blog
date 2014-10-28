@@ -13,7 +13,7 @@ exports.showAdd = function(req, res) {
 exports.add = function(req, res) {
     var url = req.body.url;
     var name = req.body.name;
-    var is_lock = req.body.is_lock;
+    var is_lock = req.body.is_lock || false ;
     if (url == '' || name == '') {
         req.flash('error', '信息不能为空!');
         return res.redirect('back');

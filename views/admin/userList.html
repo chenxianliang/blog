@@ -30,7 +30,7 @@
                         <td><%= index + 1 %></td>
                         <td><%= user.name%></td>
                         <td>
-                            
+                            <a href="/admin/user_remove/<%=user.id%>" onclick = "return confirm('确定删除此用户?')" class="col-sm-offset-1"><i class="glyphicon glyphicon-remove"></i></a>
                         </td>
                     </tr>
                 <% }) %>

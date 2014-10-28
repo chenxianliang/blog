@@ -37,6 +37,10 @@ exports.post = function(req, res) {
 }
 
 exports.add = function(req, res) {
+    if(!req.session.user['_id']){
+        req.flash('error', '请重新登录!');
+        return res.redirect('/');
+    }
     var oTopic = {
         title: req.body.title,
         content: req.body.content,
@@ -86,7 +90,7 @@ exports.blist = function(req, res) {
     var options = {
         skip: (page - 1) * once,
         limit: once,
-        sort: '-create_at.date'
+        sort: '-_id'
     };
 
     var query = {};
@@ -156,13 +160,13 @@ exports.saveEdit = function(req, res) {
         title: req.body.title,
         content: req.body.content,
         author_id: req.session.user['_id'],
-        top: req.body.top, // 置顶帖
-        slide: req.body.slide, // 幻灯
+        top: req.body.top || false, // 置顶帖
+        slide: req.body.slide || false, // 幻灯
         address: req.body.address,
         thumb_pic: req.body.thumb_pic,
-        arrow_reply: req.body.arrow_reply,
+        arrow_reply: req.body.arrow_reply || false,
         cls: req.body.cls,
-        out: req.body.out,
+        out: req.body.out || false,
         update_at: getTime(),
         preview: req.body.preview
     }
@@ -204,7 +208,6 @@ exports.remove = function(req, res) {
     Topic.getTopicById(id, function(err, topic, author) {
         if (!topic) {
             req.flash('error', '文章已经不存在!');
-            return;
             res.redirect('back');
         }
         if (author.id != req.session.user['_id']) {
@@ -230,12 +233,12 @@ exports.showItem = function(req, res) {
     var options = {
         skip: 0,
         limit: once,
-        sort: '-create_at.date'
+        sort: '-_id'
     };
 
     var proxy = new EventProxy();
 
-    proxy.all('topic', 'author', 'reply', 'count', 'cls', 'group', 'message', 'link', function(topic, author, reply, count, cls, group, message, link) {
+    proxy.all('topic', 'author', 'reply', 'count', 'cls', 'group', 'message', 'link','add_visit', function(topic, author, reply, count, cls, group, message, link,add_visit) {
         res.render('detail.html', {
             title: topic.title,
             topic: topic,
@@ -269,8 +272,12 @@ exports.showItem = function(req, res) {
         proxy.emit('group', group);
     });
 
+    Topic.addVisit(id,function(){
+        proxy.emit('add_visit', null);
+    });
+
     Message.getMessageByQuery({}, {
-        limit: 10
+        limit: require('../settings').message_page_count
     }, function(err, message) {
         proxy.emit('message', message);
     });
@@ -287,6 +294,9 @@ exports.showItem = function(req, res) {
         if (!topic) {
             req.flash('error', '文章已经不存在!');
             return res.redirect('back');
+        }
+        if(!topic.out){
+            req.redirect('/');
         }
         proxy.emit('topic', topic);
         proxy.emit('author', author);
@@ -322,13 +332,13 @@ exports.showItem_address = function(req, res) {
     var options = {
         skip: 0,
         limit: once,
-        sort: '-create_at.date'
+        sort: '-_id'
     };
 
 
     var proxy = new EventProxy();
 
-    proxy.all('topic', 'author', 'reply', 'count', 'cls', 'group', 'message', 'link', function(topic, author, reply, count, cls, group, message, link) {
+    proxy.all('topic', 'author', 'reply', 'count', 'cls', 'group', 'message', 'link','add_visit', function(topic, author, reply, count, cls, group, message, link,add_visit) {
         res.render('detail.html', {
             title: topic.title,
             topic: topic,
@@ -369,7 +379,7 @@ exports.showItem_address = function(req, res) {
     });
 
     Message.getMessageByQuery({}, {
-        limit: 10
+        limit: require('../settings').message_page_count
     }, function(err, message) {
         proxy.emit('message', message);
     });
@@ -382,6 +392,17 @@ exports.showItem_address = function(req, res) {
         proxy.emit('topic', topic);
         proxy.emit('author', author);
 
+        if(!topic.out){
+            req.redirect('/');
+        }
+
+        if(req.session.user){
+            proxy.emit('add_visit', null);
+        }else{
+            Topic.addVisit(topic['_id'],function(){
+                proxy.emit('add_visit', null);
+            });
+        }
         Reply.getRepliesByQuery({
             'topic_id': topic['_id']
         }, options, function(err, rep) {
