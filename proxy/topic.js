@@ -191,6 +191,26 @@ exports.getTopic = function (id, callback) {
 };
 
 /**
+ * 将当前主题的访问量计数减1
+ * @param {String} id 主题ID
+ * @param {Function} callback 回调函数
+ */
+exports.addVisit = function (id, callback) {
+  Topic.findOne({_id: id}, function (err, topic) {
+    if (err) {
+      return callback(err);
+    }
+
+    if (!topic) {
+      return callback(new Error('该主题不存在'));
+    }
+
+    topic.visit_count += 1;
+    topic.save(callback);
+  });
+};
+
+/**
  * 将当前主题的回复计数减1，删除回复时用到
  * @param {String} id 主题ID
  * @param {Function} callback 回调函数

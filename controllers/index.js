@@ -29,10 +29,10 @@ exports.showIndex = function(req, res) {
     var options = {
         skip: (page - 1) * once,
         limit: once,
-        sort: '-create_at.date'
+        sort: '-top -_id'
     };
 
-    var query = {};
+    var query = {out:true};
 
     if (keyword) {
         query['title'] = new RegExp(keyword); //模糊查询参数
@@ -66,7 +66,7 @@ exports.showIndex = function(req, res) {
     });
 
     Message.getMessageByQuery({}, {
-        limit: 10
+        limit: require('../settings').message_page_count
     }, function(err, message) {
         proxy.emit('message', message);
     });
@@ -114,10 +114,10 @@ exports.showIndex_tab = function(req, res) {
     var options = {
         skip: (page - 1) * once,
         limit: once,
-        sort: '-create_at.date'
+        sort: '-top -_id'
     };
 
-    var query = {};
+    var query = {out:true};
 
     if (keyword) {
         query['title'] = new RegExp(keyword); //模糊查询参数
@@ -167,7 +167,7 @@ exports.showIndex_tab = function(req, res) {
     });
 
     Message.getMessageByQuery({}, {
-        limit: 10
+        limit: require('../settings').message_page_count
     }, function(err, message) {
         proxy.emit('message', message);
     });
