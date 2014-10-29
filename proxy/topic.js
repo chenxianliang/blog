@@ -147,6 +147,8 @@ exports.getTopicsByQuery = function (query, opt, callback) {
         // 所以这里有可能是null
         if (topic) {
          // topic = JSON.parse(JSON.stringify( topic ));
+         // 
+          //topic = JSON.parse(JSON.stringify(topic));
           topic.author = author;
           topic.reply = last_reply;
           topic.oCls = cls;

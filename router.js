@@ -133,6 +133,11 @@ module.exports = function(app) {
     app.post('/ajax/message_add',message.ajaxAdd);
 
 
+    app.use(function (req, res) {
+      res.render("404.html");
+    });
+
+
     function checkLogin(req, res, next) {
         if (!req.session.user) {
             req.flash('error', '未登录!');

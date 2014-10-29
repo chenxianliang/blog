@@ -1,1 +1,1 @@
-node app
+supervisor app
