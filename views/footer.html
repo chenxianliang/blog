@@ -1,5 +1,5 @@
-<% if(link.length){ %>
-    <section class="link wrap">
+   <% if(link.length){ %>
+    <section class="link container hidden-xs">
         <span class="link-pre">友情链接：</span>
 <% } %>
 <% link.forEach(function(l){ %>
@@ -11,12 +11,5 @@
 <footer>
     作者：<%= sys.author %> &nbsp;&nbsp;&nbsp;&nbsp;QQ：<%= sys.qq %>
 </footer>
-<section class="side-bar"></section>
-<script>
-var $menu = $('.navbar').find('.menu');
-$menu.on('click', function() {
-    $('body').toggleClass('side-active');
-})
-</script>
 </body>
 </html>

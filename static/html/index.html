@@ -4,206 +4,176 @@
 <head>
     <title>cZone</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0,target-densitydpi=medium-dpi">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/index.css" rel="stylesheet">
-    <script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+    <link href="../css/media.css" rel="stylesheet">
+    <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 </head>
 
 <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <button type="button" class="btn btn-default menu btn-sm">
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </button>
-        <div class="wrap">
+        <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">cZone</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">cZone</a>
             </div>
-            <div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <form class="navbar-form navbar-right row" role="search">
+                    <div class="form-group form-group-xs col-xs-9">
+                        <input type="text" class="form-control nav-search-txt" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default col-xs-3">搜 索</button>
+                    <div class="clearfix"></div>
+                </form>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a>
                     </li>
-                    <li><a href="#">Article</a>
+                    <li><a href="#">SVN</a>
                     </li>
-                    <li>
-                        <a href="#">
-                           About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                           Connect
-                        </a>
+                    <li class="dropdown">
+                        <a href="#">Java</a>
                     </li>
                 </ul>
-            </div>
-            <div>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group form-group-sm">
-                        <input type="text" class="form-control nav-search-txt"  placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default ">搜 索</button>
-                </form>
             </div>
         </div>
     </nav>
 
-
-    <section class="main container wrap">
-        <div class="row main-wrap">
-            <div class="col-sm-8 main-left">
-                <div class="article-item">
+    <section class="main container">
+        <div class="main-body col-sm-8">
+            <div class="topic-item">
+                <a href="#">
+                    <h4 class="topic-title">
+                        封口机司法所难分难舍发神经减肥咖啡就是快
+                    </h4>
+                </a>
+                <div class="topic-info">
                     <a href="#">
-                        <h4 class="article-title">
-                            封口机司法所难分难舍发神经减肥咖啡就是快
-                        </h4>
+                        <img src="../images/1.png" alt="" class="topic-img pull-left img-rounded">
                     </a>
-                    <div class="article-info clearfix">
-                        <img src="../images/1.png" alt="" class="article-img fl">
-                        <div class="article-post fr">
-                            <a href="">
-                                <p class="article-txt">
-                                    多啦就是快哭了多久阿桑了解flak手机费空间撒两款手机副科级啊十分愧疚啊是开发商看好凯撒交话费卡刷卡缴费阿十分艰苦撒化肥空间撒胡椒咖啡壶开发和富士康就会发生口角啊哈
-                                </p>
-                            </a>
+                    <div class="topic-right">
+                        <a href="#">
+                            <p class="topic-txt">
+                                多啦就是快哭了多久阿桑了解flak手机费空间撒两款手机副科级啊十分愧疚啊是开发商看好凯撒交话费卡刷卡缴费阿十分艰苦撒化肥空间撒胡椒咖啡壶开发和富士康就会发生口角啊哈
+                            </p>
+                        </a>
+                        <div class="topic-author text-right">
+                            <t>
+                            <span class="glyphicon glyphicon-user"></span>admin
+                            <span class="glyphicon glyphicon-eye-open"></span>(12)
+                            </t>
+                            <span class="glyphicon glyphicon-comment"></span>(12)
                             
-                            <div class="article-author">
-                                <span class="article-pre">post by</span>
-                                <span class="article-name">admin</span>评论(12)
-                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="article-item">
-                    <a href="#">
-                        <h4 class="article-title">
-                            封口机司法所难分难舍发神经减肥咖啡就是快
-                        </h4>
-                    </a>
-                    <div class="article-info clearfix">
-                        <img src="../images/1.png" alt="" class="article-img fl">
-                        <div class="article-post fr">
-                            <p class="article-txt">
-                                多啦就是快哭了多久阿桑了解flak手机费空间撒两款手机副科级啊十分愧疚啊是开发商看好凯撒交话费卡刷卡缴费阿十分艰苦撒化肥空间撒胡椒咖啡壶开发和富士康就会发生口角啊哈
-                            </p>
-                            <div class="article-author">
-                                <span class="article-pre">post by</span>
-                                <span class="article-name">admin</span>评论(12)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="article-item">
-                    <a href="#">
-                        <h4 class="article-title">
-                            封口机司法所难分难舍发神经减肥咖啡就是快
-                        </h4>
-                    </a>
-                    <div class="article-info clearfix">
-                        <img src="../images/1.png" alt="" class="article-img fl">
-                        <div class="article-post fr">
-                            <p class="article-txt">
-                                多啦就是快哭了多久阿桑了解flak手机费空间撒两款手机副科级啊十分愧疚啊是开发商看好凯撒交话费卡刷卡缴费阿十分艰苦撒化肥空间撒胡椒咖啡壶开发和富士康就会发生口角啊哈
-                            </p>
-                            <div class="article-author">
-                                <span class="article-pre">post by</span>
-                                <span class="article-name">admin</span>评论(12)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="article-item">
-                    <a href="#">
-                        <h4 class="article-title">
-                            封口机司法所难分难舍发神经减肥咖啡就是快
-                        </h4>
-                    </a>
-                    <div class="article-info clearfix">
-                        <img src="../images/1.png" alt="" class="article-img fl">
-                        <div class="article-post fr">
-                            <p class="article-txt">
-                                多啦就是快哭了多久阿桑了解flak手机费空间撒两款手机副科级啊十分愧疚啊是开发商看好凯撒交话费卡刷卡缴费阿十分艰苦撒化肥空间撒胡椒咖啡壶开发和富士康就会发生口角啊哈
-                            </p>
-                            <div class="article-author">
-                                <span class="article-pre">post by</span>
-                                <span class="article-name">admin</span>评论(12)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="article-pager">
-                    <a href="#">首页</a>
-                    <a href="#">上一页</a>
-                    <span>下一页</span>
-                    <span>尾页</span>
                 </div>
             </div>
-            <div class="col-sm-4 main-right">
-                <div class="right-part count">
-                    <h3 class="right-part-title">文章归档</h3>
-                    <ul>
-                        <li><a href="#">2014年10月(12)</a>
-                        </li>
-                        <li><a href="#">2014年10月(12)</a>
-                        </li>
-                        <li><a href="#">2014年10月(12)</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="right-part message">
-                    <h3 class="right-part-title">最新留言</h3>
-                    <div class="message-item">
-                        <div class="message-authar clearfix">
-                            <span class="fl message-name">小俊俊</span>
-                            <span class="fr message-time">三天前</span>
+            <div class="topic-item">
+                <a href="#">
+                    <h4 class="topic-title">
+                        封口机司法所难分难舍发神经减肥咖啡就是快
+                    </h4>
+                </a>
+                <div class="topic-info">
+                    <a href="#">
+                        <img src="images/1.png" alt="" class="topic-img pull-left img-rounded">
+                    </a>
+                    <div class="topic-right">
+                        <a href="#">
+                            <p class="topic-txt">
+                                多啦就是快哭了多久阿桑了解flak手机费空间撒两款手机副科级啊十分愧疚啊是开发商看好凯撒交话费卡刷卡缴费阿十分艰苦撒化肥空间撒胡椒咖啡壶开发和富士康就会发生口角啊哈
+                            </p>
+                        </a>
+                        <div class="topic-author text-right">
+                            <t>
+                            <span class="glyphicon glyphicon-user"></span>admin
+                            <span class="glyphicon glyphicon-eye-open"></span>(12)
+                            </t>
+                            <span class="glyphicon glyphicon-comment"></span>(12)
+                            
                         </div>
-                        <p class="message-info">
-                            放假了发生口角化肥空间阿十分愧疚啊上课放假阿什科夫哈萨克几乎疯狂撒化肥看哈
-                        </p>
                     </div>
-                    <div class="message-item">
-                        <div class="message-authar clearfix">
-                            <span class="fl message-name">小俊俊</span>
-                            <span class="fr message-time">三天前</span>
-                        </div>
-                        <p class="message-info">
-                            放假了发生口角化肥空间阿十分愧疚啊上课放假阿什科夫哈萨克几乎疯狂撒化肥看哈
-                        </p>
-                    </div>
-                    <div class="message-item">
-                        <div class="message-authar clearfix">
-                            <span class="fl message-name">小俊俊</span>
-                            <span class="fr message-time">三天前</span>
-                        </div>
-                        <p class="message-info">
-                            放假了发生口角化肥空间阿十分愧疚啊上课放假阿什科夫哈萨克几乎疯狂撒化肥看哈
-                        </p>
-                    </div>
-                </div>
 
-                <div class="right-part message-add">
-                    <h3 class="right-part-title">对网站说点啥</h3>
-                    <textarea name="" class="message-add-txt" placeholder="说点什么"></textarea>
-                    <div class="message-add-author clearfix">
-                        <span class="message-add-pre fl">用户名：</span>
-                        <input type="text" class="fl message-add-name" value="" placeholder="请输入用户名" />
-                        <button type="button" class="btn btn-default fr message-add-btn">提 交</button>
-                    </div>
                 </div>
-
             </div>
+            <ul class="pager">
+              <li class="previous disabled"><a href="#">&larr; 上一页</a></li>
+              <li class="next"><a href="#">下一页 &rarr;</a></li>
+            </ul>
+
+        </div>
+        <div class="slider col-sm-4">
+            <div class="slider-item count">
+                <h3 class="slider-item-title">文章归档</h3>
+                <ul>
+                    <li><a href="#">2014年10月(12)</a>
+                    </li>
+                    <li><a href="#">2014年10月(12)</a>
+                    </li>
+                    <li><a href="#">2014年10月(12)</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="slider-item message">
+                <h3 class="slider-item-title">最新留言</h3>
+                <div class="message-item">
+                    <div class="message-authar clearfix">
+                        <span class="pull-left message-name">小俊俊</span>
+                        <span class="pull-right message-time">三天前</span>
+                    </div>
+                    <p class="message-info">
+                        放假了发生口角化肥空间阿十分愧疚啊上课放假阿什科夫哈萨克几乎疯狂撒化肥看哈
+                    </p>
+                </div>
+                <div class="message-item">
+                    <div class="message-authar clearfix">
+                        <span class="pull-left message-name">小俊俊</span>
+                        <span class="pull-right message-time">三天前</span>
+                    </div>
+                    <p class="message-info">
+                        放假了发生口角化肥空间阿十分愧疚啊上课放假阿什科夫哈萨克几乎疯狂撒化肥看哈
+                    </p>
+                </div>
+                <div class="message-item">
+                    <div class="message-authar clearfix">
+                        <span class="pull-left message-name">小俊俊</span>
+                        <span class="pull-right message-time">三天前</span>
+                    </div>
+                    <p class="message-info">
+                        放假了发生口角化肥空间阿十分愧疚啊上课放假阿什科夫哈萨克几乎疯狂撒化肥看哈
+                    </p>
+                </div>
+            </div>
+
+            <div class="slider-item message-add">
+                <h3 class="slider-item-title">对网站说点啥</h3>
+                <textarea name="" class="message-add-txt" placeholder="说点什么"></textarea>
+
+                <div class="message-form ">
+                    <div class="form-group form-group-xs col-xs-9">
+                        <input type="text" class="form-control nav-search-txt message-add-name" placeholder="请留下大名">
+                    </div>
+                    <button type="submit" class="btn btn-default col-xs-3 message-add-btn">提 交</button>
+                    <div class="clearfix"></div>
+                </div>
+
+                <!-- <div class="message-add-author row clearfix">
+                    <div class="form-group form-group-xs col-xs-9">
+                        <input type="text" class="form-control message-add-name" placeholder="请留下大名">
+                    </div>
+                    <button type="button" class="btn btn-default col-xs-3 message-add-btn">提 交</button>
+                </div> -->
+            </div>
+
         </div>
     </section>
-
-    <section class="link wrap">
+    <section class="link container hidden-xs">
         <span class="link-pre">友情链接：</span>
         <a href="#">百度</a>
         <a href="#">百度</a>
@@ -212,16 +182,9 @@
         <a href="#">百度</a>
         <a href="#">百度</a>
     </section>
-    <footer>
+    <footer class="container text-center">
         author：cxl &nbsp;&nbsp;&nbsp;&nbsp;QQ：464896740
     </footer>
-    <section class="side-bar"></section>
-    <script>
-    var $menu = $('.navbar').find('.menu');
-    $menu.on('click', function() {
-        $('body').toggleClass('side-active');
-    })
-    </script>
 </body>
 
 </html>

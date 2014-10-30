@@ -31,7 +31,7 @@ $(function(){
                     var $item = $('.js_message_templete').find('.message-item').clone();
                     $item.find('.message-name').html(obj.author);
                     $item.find('.message-info').html(obj.content);
-                    $('.right-part.message').append($item);
+                    $('.slider-item.message').append($item);
 
                     var h = $item.outerHeight();
                     $item.height(0).css('opacity', 0).animate({

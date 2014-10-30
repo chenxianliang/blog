@@ -1,7 +1,7 @@
-<div class="right-part count">
-    <h3 class="right-part-title">文章归档</h3>
+<div class="slider-item count">
+    <h3 class="slider-item-title">文章归档</h3>
     <ul>
-      <%
+        <%
         function formatDate(date){
           return date.replace(/(\d+)\-(\d+)/,function($0,$1,$2){
             return $1 + '年' + $2 + '月';
@@ -13,14 +13,13 @@
       <%  } %>
     </ul>
 </div>
-
-<div class="right-part message">
-    <h3 class="right-part-title">最新留言</h3>
+<div class="slider-item message">
+    <h3 class="slider-item-title">最新留言</h3>
     <% message.forEach(function(m){ %>
         <div class="message-item">
           <div class="message-authar clearfix">
-              <span class="fl message-name"><%= m.author %></span>
-              <span class="fr message-time"><%= m.create_at.minute %></span>
+              <span class="pull-left message-name"><%= m.author %></span>
+              <span class="pull-right message-time"><%= m.create_at.minute %></span>
           </div>
           <p class="message-info">
             <%- m.content %>
@@ -29,25 +28,24 @@
     <% }) %>
 </div>
 
-<div class="right-part message-add">
-    <h3 class="right-part-title">对网站说点啥</h3>
+<div class="slider-item message-add">
+    <h3 class="slider-item-title">对网站说点啥</h3>
     <textarea name="" class="message-add-txt" placeholder="说点什么"></textarea>
-    <div class="message-add-author clearfix">
-        <span class="message-add-pre fl">用户名：</span>
-        <input type="text" class="fl message-add-name" value="" placeholder="请输入用户名" />
-        <button type="button" class="btn btn-default fr message-add-btn">提 交</button>
+    <div class="message-form message-add-author">
+        <div class="form-group form-group-xs col-xs-9">
+            <input type="text" class="form-control nav-search-txt message-add-name" placeholder="请留下大名">
+        </div>
+        <button type="submit" class="btn btn-default col-xs-3 message-add-btn">提 交</button>
+        <div class="clearfix"></div>
     </div>
 </div>
-
 <div class="js_message_templete" style="display: none;">
     <div class="message-item">
       <div class="message-authar clearfix">
-          <span class="fl message-name"></span>
-          <span class="fr message-time">刚刚</span>
+          <span class="pull-left message-name"></span>
+          <span class="pull-right message-time">刚刚</span>
       </div>
       <p class="message-info">
-          
       </p>
   </div>
 </div>
-

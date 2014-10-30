@@ -1,63 +1,66 @@
 <%- include header.html %>
-	<section class="main container wrap">
-        <div class="row main-wrap">
-            <div class="col-sm-8 main-left">     
-				<% topics.forEach(function (topic, index) { %>
-                <%
-                    var href = '';
-                    if(topic.address){
-                        href = '/html/' + topic.address;
-                    }else{
-                        href = '/topic/' + topic.id;
-                    }
-                %>
-				  <div class="article-item">
+    <section class="main container">
+        <div class="main-body col-sm-8">
+            <% topics.forEach(function (topic, index) { %>
+            <%
+                var href = '';
+                if(topic.address){
+                    href = '/html/' + topic.address;
+                }else{
+                    href = '/topic/' + topic.id;
+                }
+            %>
+            <div class="topic-item">
+                <a href="<%= href %>">
+                    <h4 class="topic-title">
+                        <%= topic.title %>
+                    </h4>
+                </a>
+                <div class="topic-info">
                     <a href="<%= href %>">
-                        <h4 class="article-title">
-                            <%= topic.title %>
-                        </h4>
+                        <img src="<%= topic.thumb_pic %>" alt="" class="topic-img pull-left img-rounded">
                     </a>
-                    <div class="article-info clearfix">
+                    <div class="topic-right">
                         <a href="<%= href %>">
-                            <img src="<%= topic.thumb_pic %>" alt="" class="article-img fl">
+                            <p class="topic-txt">
+                                <%= topic.preview %>
+                            </p>
                         </a>
-                        <div class="article-post fr">
-                            <a href="<%= href %>">
-                                <p class="article-txt">
-                                	<%= topic.preview %>
-                                </p>
-                            </a>
-                            <div class="article-author">
-                                <span class="article-pre">post by</span>
-                                <span class="article-name"><%= topic.author.name %></span>评论( <%= topic.reply_count %> )
-                            </div>
+                        <div class="topic-author text-right">
+                            <t>
+                                <span class="glyphicon glyphicon-user"></span><%= topic.author.name %>
+                                <span class="glyphicon glyphicon-eye-open"></span>(<%= topic.visit_count %>)
+                            </t>
+                            <span class="glyphicon glyphicon-comment"></span>(<%= topic.reply_count %>)
                         </div>
                     </div>
-                </div>
-				<% }) %>
-                <div class="article-pager">
-                  <% if( pageCount > 1 ){ %>
-                      <% if (!isFirstPage) { %>
-                        <a href="/">首页</a>
-                        <a href="?page=<%= page - 1 %>">上一页</a>
-                      <% } else{%>
-                        <span>首页</span>
-                        <span>上一页</span>
-                      <%}%>
 
-                      <% if (!isLastPage) { %>
-                        <a href="?page=<%= page + 1%>">下一页</a>
-                        <a href="?page=<%= pageCount %>">尾页</a>
-                      <% } else{%>
-                        <span>下一页</span>
-                        <span>尾页</span>
-                      <% } %>
-                 <% } %>
                 </div>
             </div>
-            <div class="col-sm-4 main-right">
-              <%- include right.html %>
-            </div>
+            <% }) %>
+
+            <% if( pageCount > 1 ){ %>
+            <ul class="pager">
+                <% if (!isFirstPage) { %>
+                   <li class="previous"><a href="?page=<%= page - 1 %>">&larr; 上一页</a>
+                </li>
+                  <% } else{%>
+                    <li class="previous disabled"><a href="javascript:;">&larr; 上一页</a>
+                </li>
+                <%}%>
+
+                <% if (!isLastPage) { %>
+                  <li class="next"><a href="?page=<%= page + 1%>">下一页 &rarr;</a>
+                </li>
+                  <% } else{%>
+                   <li class="next"><a href="javascript:;">下一页 &rarr;</a>
+                </li>
+                <%}%>
+            </ul>
+            <% } %>
+        </div>
+        <div class="slider col-sm-4">
+            <%- include right.html %>
         </div>
     </section>
-<%- include footer.html %>
+    <%- include footer.html %>
