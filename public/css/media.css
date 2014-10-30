@@ -44,8 +44,12 @@
     }
     .topic-txt {
         height: 45px;
+        line-height: 23px;
     }
     .topic-author t {
         display: none;
+    }
+    .post-content img{
+        max-width:100%;
     }
 }

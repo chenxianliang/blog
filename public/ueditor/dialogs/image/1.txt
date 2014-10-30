@@ -1,8 +1,8 @@
-ï»¿/**
+/**
  * User: Jinqn
  * Date: 14-04-08
- * Time: ä¸‹åˆ16:34
- * ä¸Šä¼ å›¾ç‰‡å¯¹è¯æ¡†é€»è¾‘ä»£ç ,åŒ…æ‹¬tab: è¿œç¨‹å›¾ç‰‡/ä¸Šä¼ å›¾ç‰‡/åœ¨çº¿å›¾ç‰‡/æœç´¢å›¾ç‰‡
+ * Time: ÏÂÎç16:34
+ * ÉÏ´«Í¼Æ¬¶Ô»°¿òÂß¼­´úÂë,°üÀ¨tab: Ô¶³ÌÍ¼Æ¬/ÉÏ´«Í¼Æ¬/ÔÚÏßÍ¼Æ¬/ËÑË÷Í¼Æ¬
  */
 
 (function () {
@@ -18,7 +18,7 @@
         initButtons();
     };
 
-    /* åˆå§‹åŒ–tabæ ‡ç­¾ */
+    /* ³õÊ¼»¯tab±êÇ© */
     function initTabs() {
         var tabs = $G('tabhead').children;
         for (var i = 0; i < tabs.length; i++) {
@@ -36,7 +36,7 @@
         }
     }
 
-    /* åˆå§‹åŒ–tabbody */
+    /* ³õÊ¼»¯tabbody */
     function setTabFocus(id) {
         if(!id) return;
         var i, bodyId, tabs = $G('tabhead').children;
@@ -70,7 +70,7 @@
         }
     }
 
-    /* åˆå§‹åŒ–onokäº‹ä»¶ */
+    /* ³õÊ¼»¯onokÊÂ¼ş */
     function initButtons() {
 
         dialog.onok = function () {
@@ -90,7 +90,7 @@
                     list = uploadImage.getInsertList();
                     var count = uploadImage.getQueueCount();
                     if (count) {
-                        $('.info', '#queueList').html('<span style="color:red;">' + 'è¿˜æœ‰2ä¸ªæœªä¸Šä¼ æ–‡ä»¶'.replace(/[\d]/, count) + '</span>');
+                        $('.info', '#queueList').html('<span style="color:red;">' + '»¹ÓĞ2¸öÎ´ÉÏ´«ÎÄ¼ş'.replace(/[\d]/, count) + '</span>');
                         return false;
                     }
                     break;
@@ -111,9 +111,9 @@
     }
 
 
-    /* åˆå§‹åŒ–å¯¹å…¶æ–¹å¼çš„ç‚¹å‡»äº‹ä»¶ */
+    /* ³õÊ¼»¯¶ÔÆä·½Ê½µÄµã»÷ÊÂ¼ş */
     function initAlign(){
-        /* ç‚¹å‡»alignå›¾æ ‡ */
+        /* µã»÷alignÍ¼±ê */
         domUtils.on($G("alignIcon"), 'click', function(e){
             var target = e.target || e.srcElement;
             if(target.className && target.className.indexOf('-align') != -1) {
@@ -122,7 +122,7 @@
         });
     }
 
-    /* è®¾ç½®å¯¹é½æ–¹å¼ */
+    /* ÉèÖÃ¶ÔÆë·½Ê½ */
     function setAlign(align){
         align = align || 'none';
         var aligns = $G("alignIcon").children;
@@ -135,14 +135,14 @@
             }
         }
     }
-    /* è·å–å¯¹é½æ–¹å¼ */
+    /* »ñÈ¡¶ÔÆë·½Ê½ */
     function getAlign(){
         var align = $G("align").value || 'none';
         return align == 'none' ? '':align;
     }
 
 
-    /* åœ¨çº¿å›¾ç‰‡ */
+    /* ÔÚÏßÍ¼Æ¬ */
     function RemoteImage(target) {
         this.container = utils.isString(target) ? document.getElementById(target) : target;
         this.init();
@@ -171,7 +171,7 @@
             var _this = this,
                 locker = $G('lock');
 
-            /* æ”¹å˜url */
+            /* ¸Ä±äurl */
             domUtils.on($G("url"), 'keyup', updatePreview);
             domUtils.on($G("border"), 'keyup', updatePreview);
             domUtils.on($G("title"), 'keyup', updatePreview);
@@ -217,17 +217,17 @@
             }
         },
         setImage: function(img){
-            /* ä¸æ˜¯æ­£å¸¸çš„å›¾ç‰‡ */
+            /* ²»ÊÇÕı³£µÄÍ¼Æ¬ */
             if (!img.tagName || img.tagName.toLowerCase() != 'img' && !img.getAttribute("src") || !img.src) return;
 
             var wordImgFlag = img.getAttribute("word_img"),
                 src = wordImgFlag ? wordImgFlag.replace("&amp;", "&") : (img.getAttribute('_src') || img.getAttribute("src", 2).replace("&amp;", "&")),
                 align = editor.queryCommandValue("imageFloat");
 
-            /* é˜²æ­¢onchangeäº‹ä»¶å¾ªç¯è°ƒç”¨ */
+            /* ·ÀÖ¹onchangeÊÂ¼şÑ­»·µ÷ÓÃ */
             if (src !== $G("url").value) $G("url").value = src;
             if(src) {
-                /* è®¾ç½®è¡¨å•å†…å®¹ */
+                /* ÉèÖÃ±íµ¥ÄÚÈİ */
                 $G("width").value = img.width || '';
                 $G("height").value = img.height || '';
                 $G("border").value = img.getAttribute("border") || '0';
@@ -286,7 +286,7 @@
 
 
 
-    /* ä¸Šä¼ å›¾ç‰‡ */
+    /* ÉÏ´«Í¼Æ¬ */
     function UploadImage(target) {
         this.$wrap = target.constructor == String ? $('#' + target) : $(target);
         this.init();
@@ -300,39 +300,39 @@
         initContainer: function () {
             this.$queue = this.$wrap.find('.filelist');
         },
-        /* åˆå§‹åŒ–å®¹å™¨ */
+        /* ³õÊ¼»¯ÈİÆ÷ */
         initUploader: function () {
             var _this = this,
                 $ = jQuery,    // just in case. Make sure it's not an other libaray.
                 $wrap = _this.$wrap,
-            // å›¾ç‰‡å®¹å™¨
+            // Í¼Æ¬ÈİÆ÷
                 $queue = $wrap.find('.filelist'),
-            // çŠ¶æ€æ ï¼ŒåŒ…æ‹¬è¿›åº¦å’Œæ§åˆ¶æŒ‰é’®
+            // ×´Ì¬À¸£¬°üÀ¨½ø¶ÈºÍ¿ØÖÆ°´Å¥
                 $statusBar = $wrap.find('.statusBar'),
-            // æ–‡ä»¶æ€»ä½“é€‰æ‹©ä¿¡æ¯ã€‚
+            // ÎÄ¼ş×ÜÌåÑ¡ÔñĞÅÏ¢¡£
                 $info = $statusBar.find('.info'),
-            // ä¸Šä¼ æŒ‰é’®
+            // ÉÏ´«°´Å¥
                 $upload = $wrap.find('.uploadBtn'),
-            // ä¸Šä¼ æŒ‰é’®
+            // ÉÏ´«°´Å¥
                 $filePickerBtn = $wrap.find('.filePickerBtn'),
-            // ä¸Šä¼ æŒ‰é’®
+            // ÉÏ´«°´Å¥
                 $filePickerBlock = $wrap.find('.filePickerBlock'),
-            // æ²¡é€‰æ‹©æ–‡ä»¶ä¹‹å‰çš„å†…å®¹ã€‚
+            // Ã»Ñ¡ÔñÎÄ¼şÖ®Ç°µÄÄÚÈİ¡£
                 $placeHolder = $wrap.find('.placeholder'),
-            // æ€»ä½“è¿›åº¦æ¡
+            // ×ÜÌå½ø¶ÈÌõ
                 $progress = $statusBar.find('.progress').hide(),
-            // æ·»åŠ çš„æ–‡ä»¶æ•°é‡
+            // Ìí¼ÓµÄÎÄ¼şÊıÁ¿
                 fileCount = 0,
-            // æ·»åŠ çš„æ–‡ä»¶æ€»å¤§å°
+            // Ìí¼ÓµÄÎÄ¼ş×Ü´óĞ¡
                 fileSize = 0,
-            // ä¼˜åŒ–retina, åœ¨retinaä¸‹è¿™ä¸ªå€¼æ˜¯2
+            // ÓÅ»¯retina, ÔÚretinaÏÂÕâ¸öÖµÊÇ2
                 ratio = window.devicePixelRatio || 1,
-            // ç¼©ç•¥å›¾å¤§å°
+            // ËõÂÔÍ¼´óĞ¡
                 thumbnailWidth = 113 * ratio,
                 thumbnailHeight = 113 * ratio,
-            // å¯èƒ½æœ‰pedding, ready, uploading, confirm, done.
+            // ¿ÉÄÜÓĞpedding, ready, uploading, confirm, done.
                 state = '',
-            // æ‰€æœ‰æ–‡ä»¶çš„è¿›åº¦ä¿¡æ¯ï¼Œkeyä¸ºfile id
+            // ËùÓĞÎÄ¼şµÄ½ø¶ÈĞÅÏ¢£¬keyÎªfile id
                 percentages = {},
                 supportTransition = (function () {
                     var s = document.createElement('p').style,
@@ -344,7 +344,7 @@
                     s = null;
                     return r;
                 })(),
-            // WebUploaderå®ä¾‹
+            // WebUploaderÊµÀı
                 uploader,
                 actionUrl = editor.getActionUrl(editor.getOpt('imageActionName')),
                 acceptExtensions = (editor.getOpt('imageAllowFiles') || []).join('').replace(/\./g, ',').replace(/^[,]/, ''),
@@ -373,17 +373,17 @@
                 server: actionUrl,
                 fileVal: editor.getOpt('imageFieldName'),
                 duplicate: true,
-                fileSingleSizeLimit: imageMaxSize,    // é»˜è®¤ 2 M
+                fileSingleSizeLimit: imageMaxSize,    // Ä¬ÈÏ 2 M
                 compress: editor.getOpt('imageCompressEnable') ? {
                     width: imageCompressBorder,
                     height: imageCompressBorder,
-                    // å›¾ç‰‡è´¨é‡ï¼Œåªæœ‰typeä¸º`image/jpeg`çš„æ—¶å€™æ‰æœ‰æ•ˆã€‚
+                    // Í¼Æ¬ÖÊÁ¿£¬Ö»ÓĞtypeÎª`image/jpeg`µÄÊ±ºò²ÅÓĞĞ§¡£
                     quality: 90,
-                    // æ˜¯å¦å…è®¸æ”¾å¤§ï¼Œå¦‚æœæƒ³è¦ç”Ÿæˆå°å›¾çš„æ—¶å€™ä¸å¤±çœŸï¼Œæ­¤é€‰é¡¹åº”è¯¥è®¾ç½®ä¸ºfalse.
+                    // ÊÇ·ñÔÊĞí·Å´ó£¬Èç¹ûÏëÒªÉú³ÉĞ¡Í¼µÄÊ±ºò²»Ê§Õæ£¬´ËÑ¡ÏîÓ¦¸ÃÉèÖÃÎªfalse.
                     allowMagnify: false,
-                    // æ˜¯å¦å…è®¸è£å‰ªã€‚
+                    // ÊÇ·ñÔÊĞí²Ã¼ô¡£
                     crop: false,
-                    // æ˜¯å¦ä¿ç•™å¤´éƒ¨metaä¿¡æ¯ã€‚
+                    // ÊÇ·ñ±£ÁôÍ·²¿metaĞÅÏ¢¡£
                     preserveHeaders: true
                 }:false
             });
@@ -397,7 +397,7 @@
 
             setState('pedding');
 
-            // å½“æœ‰æ–‡ä»¶æ·»åŠ è¿›æ¥æ—¶æ‰§è¡Œï¼Œè´Ÿè´£viewçš„åˆ›å»º
+            // µ±ÓĞÎÄ¼şÌí¼Ó½øÀ´Ê±Ö´ĞĞ£¬¸ºÔğviewµÄ´´½¨
             function addFile(file) {
                 var $li = $('<li id="' + file.id + '">' +
                         '<p class="title">' + file.name + '</p>' +
@@ -456,7 +456,7 @@
                     percentages[ file.id ] = [ file.size, 0 ];
                     file.rotation = 0;
 
-                    /* æ£€æŸ¥æ–‡ä»¶æ ¼å¼ */
+                    /* ¼ì²éÎÄ¼ş¸ñÊ½ */
                     if (!file.ext || acceptExtensions.indexOf(file.ext.toLowerCase()) == -1) {
                         showError('not_allow_type');
                         uploader.removeFile(file);
@@ -470,7 +470,7 @@
                         $li.off('mouseenter mouseleave');
                         $btns.remove();
                     }
-                    // æˆåŠŸ
+                    // ³É¹¦
                     if (cur === 'error' || cur === 'invalid') {
                         showError(file.statusText);
                         percentages[ file.id ][ 1 ] = 1;
@@ -527,7 +527,7 @@
                 $li.insertBefore($filePickerBlock);
             }
 
-            // è´Ÿè´£viewçš„é”€æ¯
+            // ¸ºÔğviewµÄÏú»Ù
             function removeFile(file) {
                 var $li = $('#' + file.id);
                 delete percentages[ file.id ];
@@ -564,7 +564,7 @@
 
                     switch (val) {
 
-                        /* æœªé€‰æ‹©æ–‡ä»¶ */
+                        /* Î´Ñ¡ÔñÎÄ¼ş */
                         case 'pedding':
                             $queue.addClass('element-invisible');
                             $statusBar.addClass('element-invisible');
@@ -573,7 +573,7 @@
                             uploader.refresh();
                             break;
 
-                        /* å¯ä»¥å¼€å§‹ä¸Šä¼  */
+                        /* ¿ÉÒÔ¿ªÊ¼ÉÏ´« */
                         case 'ready':
                             $placeHolder.addClass('element-invisible');
                             $queue.removeClass('element-invisible');
@@ -583,13 +583,13 @@
                             uploader.refresh();
                             break;
 
-                        /* ä¸Šä¼ ä¸­ */
+                        /* ÉÏ´«ÖĞ */
                         case 'uploading':
                             $progress.show(); $info.hide();
                             $upload.text(lang.uploadPause);
                             break;
 
-                        /* æš‚åœä¸Šä¼  */
+                        /* ÔİÍ£ÉÏ´« */
                         case 'paused':
                             $progress.show(); $info.hide();
                             $upload.text(lang.uploadContinue);
@@ -686,7 +686,7 @@
                         setState('confirm', files);
                         break;
                     case 'startUpload':
-                        /* æ·»åŠ é¢å¤–çš„GETå‚æ•° */
+                        /* Ìí¼Ó¶îÍâµÄGET²ÎÊı */
                         var params = utils.serializeParam(editor.queryCommandValue('serverparam')) || '',
                             url = utils.formatUrl(actionUrl + (actionUrl.indexOf('?') == -1 ? '?':'&') + 'encode=utf-8&' + params);
                         uploader.option('server', url);
@@ -699,7 +699,7 @@
             });
 
             uploader.on('uploadBeforeSend', function (file, data, header) {
-                //è¿™é‡Œå¯ä»¥é€šè¿‡dataå¯¹è±¡æ·»åŠ POSTå‚æ•°
+                //ÕâÀï¿ÉÒÔÍ¨¹ıdata¶ÔÏóÌí¼ÓPOST²ÎÊı
                 header['X_Requested_With'] = 'XMLHttpRequest';
             });
 
@@ -785,7 +785,7 @@
     };
 
 
-    /* åœ¨çº¿å›¾ç‰‡ */
+    /* ÔÚÏßÍ¼Æ¬ */
     function OnlineImage(target) {
         this.container = utils.isString(target) ? document.getElementById(target) : target;
         this.init();
@@ -795,7 +795,7 @@
             this.reset();
             this.initEvents();
         },
-        /* åˆå§‹åŒ–å®¹å™¨ */
+        /* ³õÊ¼»¯ÈİÆ÷ */
         initContainer: function () {
             this.container.innerHTML = '';
             this.list = document.createElement('ul');
@@ -807,18 +807,18 @@
             this.list.appendChild(this.clearFloat);
             this.container.appendChild(this.list);
         },
-        /* åˆå§‹åŒ–æ»šåŠ¨äº‹ä»¶,æ»šåŠ¨åˆ°åœ°æ­¥è‡ªåŠ¨æ‹‰å–æ•°æ® */
+        /* ³õÊ¼»¯¹ö¶¯ÊÂ¼ş,¹ö¶¯µ½µØ²½×Ô¶¯À­È¡Êı¾İ */
         initEvents: function () {
             var _this = this;
 
-            /* æ»šåŠ¨æ‹‰å–å›¾ç‰‡ */
+            /* ¹ö¶¯À­È¡Í¼Æ¬ */
             domUtils.on($G('imageList'), 'scroll', function(e){
                 var panel = this;
                 if (panel.scrollHeight - (panel.offsetHeight + panel.scrollTop) < 10) {
                     _this.getImageData();
                 }
             });
-            /* é€‰ä¸­å›¾ç‰‡ */
+            /* Ñ¡ÖĞÍ¼Æ¬ */
             domUtils.on(this.container, 'click', function (e) {
                 var target = e.target || e.srcElement,
                     li = target.parentNode;
@@ -832,24 +832,24 @@
                 }
             });
         },
-        /* åˆå§‹åŒ–ç¬¬ä¸€æ¬¡çš„æ•°æ® */
+        /* ³õÊ¼»¯µÚÒ»´ÎµÄÊı¾İ */
         initData: function () {
 
-            /* æ‹‰å–æ•°æ®éœ€è¦ä½¿ç”¨çš„å€¼ */
+            /* À­È¡Êı¾İĞèÒªÊ¹ÓÃµÄÖµ */
             this.state = 0;
             this.listSize = editor.getOpt('imageManagerListSize');
             this.listIndex = 0;
             this.listEnd = false;
 
-            /* ç¬¬ä¸€æ¬¡æ‹‰å–æ•°æ® */
+            /* µÚÒ»´ÎÀ­È¡Êı¾İ */
             this.getImageData();
         },
-        /* é‡ç½®ç•Œé¢ */
+        /* ÖØÖÃ½çÃæ */
         reset: function() {
             this.initContainer();
             this.initData();
         },
-        /* å‘åå°æ‹‰å–å›¾ç‰‡åˆ—è¡¨æ•°æ® */
+        /* ÏòºóÌ¨À­È¡Í¼Æ¬ÁĞ±íÊı¾İ */
         getImageData: function () {
             var _this = this;
 
@@ -892,7 +892,7 @@
                 });
             }
         },
-        /* æ·»åŠ å›¾ç‰‡åˆ°åˆ—è¡¨ç•Œé¢ä¸Š */
+        /* Ìí¼ÓÍ¼Æ¬µ½ÁĞ±í½çÃæÉÏ */
         pushData: function (list) {
             var i, item, img, icon, _this = this,
                 urlPrefix = editor.getOpt('imageManagerUrlPrefix');
@@ -918,7 +918,7 @@
                 }
             }
         },
-        /* æ”¹å˜å›¾ç‰‡å¤§å° */
+        /* ¸Ä±äÍ¼Æ¬´óĞ¡ */
         scale: function (img, w, h, type) {
             var ow = img.width,
                 oh = img.height;
@@ -964,7 +964,7 @@
         }
     };
 
-    /*æœç´¢å›¾ç‰‡ */
+    /*ËÑË÷Í¼Æ¬ */
     function SearchImage() {
         this.init();
     }
@@ -975,27 +975,27 @@
         initEvents: function(){
             var _this = this;
 
-            /* ç‚¹å‡»æœç´¢æŒ‰é’® */
+            /* µã»÷ËÑË÷°´Å¥ */
             domUtils.on($G('searchBtn'), 'click', function(){
                 var key = $G('searchTxt').value;
                 if(key && key != lang.searchRemind) {
                     _this.getImageData();
                 }
             });
-            /* ç‚¹å‡»æ¸…é™¤å¦ */
+            /* µã»÷Çå³ıæ¤ */
             domUtils.on($G('searchReset'), 'click', function(){
                 $G('searchTxt').value = lang.searchRemind;
                 $G('searchListUl').innerHTML = '';
                 $G('searchType').selectedIndex = 0;
             });
-            /* æœç´¢æ¡†èšç„¦ */
+            /* ËÑË÷¿ò¾Û½¹ */
             domUtils.on($G('searchTxt'), 'focus', function(){
                 var key = $G('searchTxt').value;
                 if(key && key == lang.searchRemind) {
                     $G('searchTxt').value = '';
                 }
             });
-            /* æœç´¢æ¡†å›è½¦é”®æœç´¢ */
+            /* ËÑË÷¿ò»Ø³µ¼üËÑË÷ */
             domUtils.on($G('searchTxt'), 'keydown', function(e){
                 var keyCode = e.keyCode || e.which;
                 if (keyCode == 13) {
@@ -1003,7 +1003,7 @@
                 }
             });
 
-            /* é€‰ä¸­å›¾ç‰‡ */
+            /* Ñ¡ÖĞÍ¼Æ¬ */
             domUtils.on($G('searchList'), 'click', function(e){
                 var target = e.target || e.srcElement,
                     li = target.parentNode.parentNode;
@@ -1035,7 +1035,7 @@
             }
             return strOut;
         },
-        /* æ”¹å˜å›¾ç‰‡å¤§å° */
+        /* ¸Ä±äÍ¼Æ¬´óĞ¡ */
         scale: function (img, w, h) {
             var ow = img.width,
                 oh = img.height;
@@ -1081,7 +1081,7 @@
                 }
             });
         },
-        /* æ·»åŠ å›¾ç‰‡åˆ°åˆ—è¡¨ç•Œé¢ä¸Š */
+        /* Ìí¼ÓÍ¼Æ¬µ½ÁĞ±í½çÃæÉÏ */
         setList: function (list) {
             var i, item, p, img, link, _this = this,
                 listUl = $G('searchListUl');
