@@ -14,6 +14,9 @@ body{
 	background-attachment:scroll;
 	transition:1s;
 }
+.navbar-right{
+	padding-left: 0;
+}
 .main{
 	padding-top:70px;
 	color:#ccc;
