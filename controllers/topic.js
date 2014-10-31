@@ -261,7 +261,7 @@ exports.showItem = function(req, res) {
         });
     });
 
-    Topic.getTopicsByQuery({}, {}, function(err, docs) {
+    Topic.getTopicsByQuery({out:true}, {}, function(err, docs) {
         var group = {};
         docs.forEach(function(doc) {
             if (group[doc.create_at.month]) {
@@ -368,7 +368,7 @@ exports.showItem_address = function(req, res) {
         proxy.emit('link', link);
     });
 
-    Topic.getTopicsByQuery({}, {}, function(err, docs) {
+    Topic.getTopicsByQuery({out:true}, {}, function(err, docs) {
         var group = {};
         docs.forEach(function(doc) {
             if (group[doc.create_at.month]) {

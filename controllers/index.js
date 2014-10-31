@@ -72,7 +72,7 @@ exports.showIndex = function(req, res) {
         proxy.emit('message', message);
     });
 
-    Topic.getTopicsByQuery({}, {}, function(err, docs) {
+    Topic.getTopicsByQuery({out:true}, {}, function(err, docs) {
         var group = {};
         docs.forEach(function(doc) {
             if (group[doc.create_at.month]) {
@@ -156,7 +156,7 @@ exports.showIndex_tab = function(req, res) {
     });
 
 
-    Topic.getTopicsByQuery({}, {}, function(err, docs) {
+    Topic.getTopicsByQuery({out:true}, {}, function(err, docs) {
         var group = {};
         docs.forEach(function(doc) {
             if (group[doc.create_at.month]) {
