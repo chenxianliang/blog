@@ -12,6 +12,9 @@ var settings = require('./settings');
 var flash = require('connect-flash');
 var ueditor=require('ueditor');
 global.BASENAME = __dirname;
+var fs = require('fs');
+var accessLog = fs.createWriteStream('log/access.log', {flags: 'a'});
+var errorLog = fs.createWriteStream('log/error.log', {flags: 'a'});
 var app = express();
 
 // all environments
@@ -22,6 +25,7 @@ app.engine('html', require('ejs').renderFile);
 app.use(flash());
 app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.logger('dev'));
+app.use(express.logger({stream: accessLog}));
 app.use(express.bodyParser({
         uploadDir: __dirname + '/tmp'
 }));
@@ -40,6 +44,11 @@ app.use(express.session({
 }));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function (err, req, res, next) {
+  var meta = '[' + new Date() + '] ' + req.url + '\n';
+  errorLog.write(meta + err.stack + '\n');
+  next();
+});
 
 // development only
 if ('development' == app.get('env')) {
