@@ -1,6 +1,11 @@
 <%- include header.html %>
     <section class="main container">
         <div class="main-body col-sm-8">
+            <% if(!topics.length) {%>
+                <div class="topic-none">
+                    此处真的暂时无银300两~~~
+                </div>
+            <% } %>
             <% topics.forEach(function (topic, index) { %>
             <%
                 var href = '';

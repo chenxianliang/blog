@@ -5,12 +5,19 @@
         <%=title%></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0,target-densitydpi=medium-dpi">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/index.css" rel="stylesheet">
-    <link href="../css/media.css" rel="stylesheet">
-    <script src="../js/jquery-1.11.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/media.css" rel="stylesheet">
+    <% if( isDetail ){%>
+        <link href="/third-party/highlight/styles/monokai.css" rel="stylesheet">
+        <script src="/third-party/highlight/highlight.js"></script>
+    <% }%>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/all.js"></script>
+    <% if( isDetail ){%>
+        <script>hljs.initHighlightingOnLoad();</script>
+    <% }%>
 </head>
 
 <body>

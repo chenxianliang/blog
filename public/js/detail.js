@@ -67,6 +67,10 @@ $(function() {
             dataType: 'json',
             success: function(res) {
                 if (res.status == 1000) {
+                    if( $('.comment-list .comment-none').size() ){
+                        $('.comment-list .comment-none').remove();
+                    }
+
                     $('.comment-add-txt').val('');
                     var obj = res.msg;
                     var $item = $('#js_cTemplete').find('.comment-list-item').clone();
@@ -119,6 +123,9 @@ $(function() {
     }
 
     function fixIp(ip) {
+        if(!ip){
+            return '';
+        }
         var arr = ip.split('.');
         return [arr[0], '**', '**', arr[3]].join('.');
     }

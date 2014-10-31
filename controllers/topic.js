@@ -247,6 +247,7 @@ exports.showItem = function(req, res) {
             message: message,
             link: link,
             sys: sys,
+            isDetail:true,
             next_reply: count > once,
             ip: iphelp.getip(req),
             group: group,
@@ -296,7 +297,7 @@ exports.showItem = function(req, res) {
             return res.redirect('back');
         }
         if(!topic.out){
-            req.redirect('/');
+            return res.redirect('/');
         }
         proxy.emit('topic', topic);
         proxy.emit('author', author);
@@ -347,6 +348,7 @@ exports.showItem_address = function(req, res) {
             message: message,
             link: link,
             sys: sys,
+            isDetail:true,
             next_reply: count > once,
             ip: iphelp.getip(req),
             group: group,

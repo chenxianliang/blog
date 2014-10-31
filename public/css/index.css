@@ -25,6 +25,12 @@ body{
 .main-body{
 	padding-left: 0;
 }
+.topic-none{
+	font-size: 18px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+}
 
 .topic-item{
 	padding:1px 10px 1px 15px;
@@ -276,6 +282,16 @@ footer{
 	background: #ccc;
 	border-radius:3px;
 	margin-left: 10px;
+}
+
+.comment-none{
+	padding: 15px;
+	border-radius:4px;
+	background:rgba(0,0,0,.1);
+	color:#111;
+	text-align: center;
+	line-height: 40px;
+	font-weight: bold;
 }
 
 .comment-list-item{

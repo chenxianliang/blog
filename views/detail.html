@@ -41,6 +41,12 @@
                 <h3 class="comment-title">
                     本文评论
                 </h3>
+                <% if(!reply.length) {%>
+                    <div class="comment-none">
+                        没人评论？！ 小伙子，你还在等什么，赶紧拿起你的键盘鼠标来一发
+                        <img src="../images/smile.gif" alt="">
+                    </div>
+                <% } %>
                 <% reply.forEach(function(rep,index){ %>
                     <div class="comment-list-item">
                         <input type="hidden" class="js_hidden_repId" value="<%= rep['_id'] %>" />
@@ -90,7 +96,7 @@
             </div>
         </div>
     </div>
-    <script src="/js/detail.js"></script>
+    <script src="/js/detail.js?V=2014103101"></script>
 <%- include footer.html %>
 
 
