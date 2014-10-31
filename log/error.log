@@ -1,0 +1,196 @@
+[Fri Oct 31 2014 12:16:39 GMT+0800 (中国标准时间)] /admim/addCls
+TypeError: G:\nodejs\blog\views\admin\cls.html:43
+    41|                                    checked 
+    42|                                <% }
+ >> 43|                             } %>  value="true">解锁<%=cls.is_lock%>sds
+    44|                     </label>
+    45|                 </div>
+    46|             </div>
+
+Cannot read property 'is_lock' of null
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:93)
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:1082)
+    at G:\nodejs\blog\node_modules\ejs\lib\ejs.js:255:15
+    at Object.exports.render (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:293:13)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:20)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at exports.showAdd (G:\nodejs\blog\controllers\cls.js:4:9)
+    at callbacks (G:\nodejs\blog\node_modules\express\lib\router\index.js:164:37)
+[Fri Oct 31 2014 12:16:41 GMT+0800 (中国标准时间)] /admim/addCls
+TypeError: G:\nodejs\blog\views\admin\cls.html:43
+    41|                                    checked 
+    42|                                <% }
+ >> 43|                             } %>  value="true">解锁<%=cls.is_lock%>sds
+    44|                     </label>
+    45|                 </div>
+    46|             </div>
+
+Cannot read property 'is_lock' of null
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:93)
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:1082)
+    at G:\nodejs\blog\node_modules\ejs\lib\ejs.js:255:15
+    at Object.exports.render (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:293:13)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:20)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at exports.showAdd (G:\nodejs\blog\controllers\cls.js:4:9)
+    at callbacks (G:\nodejs\blog\node_modules\express\lib\router\index.js:164:37)
+[Fri Oct 31 2014 12:16:41 GMT+0800 (中国标准时间)] /admim/addCls
+TypeError: G:\nodejs\blog\views\admin\cls.html:43
+    41|                                    checked 
+    42|                                <% }
+ >> 43|                             } %>  value="true">解锁<%=cls.is_lock%>sds
+    44|                     </label>
+    45|                 </div>
+    46|             </div>
+
+Cannot read property 'is_lock' of null
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:93)
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:1082)
+    at G:\nodejs\blog\node_modules\ejs\lib\ejs.js:255:15
+    at Object.exports.render (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:293:13)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:20)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at exports.showAdd (G:\nodejs\blog\controllers\cls.js:4:9)
+    at callbacks (G:\nodejs\blog\node_modules\express\lib\router\index.js:164:37)
+[Fri Oct 31 2014 12:16:55 GMT+0800 (中国标准时间)] /admim/addCls
+TypeError: G:\nodejs\blog\views\admin\cls.html:43
+    41|                                    checked 
+    42|                                <% }
+ >> 43|                             } %>  value="true">解锁<%=cls.is_lock%>sds
+    44|                     </label>
+    45|                 </div>
+    46|             </div>
+
+Cannot read property 'is_lock' of null
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:93)
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:1082)
+    at G:\nodejs\blog\node_modules\ejs\lib\ejs.js:255:15
+    at Object.exports.render (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:293:13)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:20)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at exports.showAdd (G:\nodejs\blog\controllers\cls.js:4:9)
+    at callbacks (G:\nodejs\blog\node_modules\express\lib\router\index.js:164:37)
+[Fri Oct 31 2014 12:16:57 GMT+0800 (中国标准时间)] /admim/addCls
+TypeError: G:\nodejs\blog\views\admin\cls.html:43
+    41|                                    checked 
+    42|                                <% }
+ >> 43|                             } %>  value="true">解锁<%=cls.is_lock%>sds
+    44|                     </label>
+    45|                 </div>
+    46|             </div>
+
+Cannot read property 'is_lock' of null
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:93)
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:1082)
+    at G:\nodejs\blog\node_modules\ejs\lib\ejs.js:255:15
+    at Object.exports.render (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:293:13)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:20)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at exports.showAdd (G:\nodejs\blog\controllers\cls.js:4:9)
+    at callbacks (G:\nodejs\blog\node_modules\express\lib\router\index.js:164:37)
+[Fri Oct 31 2014 12:16:58 GMT+0800 (中国标准时间)] /admim/addCls
+TypeError: G:\nodejs\blog\views\admin\cls.html:43
+    41|                                    checked 
+    42|                                <% }
+ >> 43|                             } %>  value="true">解锁<%=cls.is_lock%>sds
+    44|                     </label>
+    45|                 </div>
+    46|             </div>
+
+Cannot read property 'is_lock' of null
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:93)
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:1082)
+    at G:\nodejs\blog\node_modules\ejs\lib\ejs.js:255:15
+    at Object.exports.render (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:293:13)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:20)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at exports.showAdd (G:\nodejs\blog\controllers\cls.js:4:9)
+    at callbacks (G:\nodejs\blog\node_modules\express\lib\router\index.js:164:37)
+[Fri Oct 31 2014 12:16:58 GMT+0800 (中国标准时间)] /admim/addCls
+TypeError: G:\nodejs\blog\views\admin\cls.html:43
+    41|                                    checked 
+    42|                                <% }
+ >> 43|                             } %>  value="true">解锁<%=cls.is_lock%>sds
+    44|                     </label>
+    45|                 </div>
+    46|             </div>
+
+Cannot read property 'is_lock' of null
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:93)
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:1082)
+    at G:\nodejs\blog\node_modules\ejs\lib\ejs.js:255:15
+    at Object.exports.render (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:293:13)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:20)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at exports.showAdd (G:\nodejs\blog\controllers\cls.js:4:9)
+    at callbacks (G:\nodejs\blog\node_modules\express\lib\router\index.js:164:37)
+[Fri Oct 31 2014 12:16:58 GMT+0800 (中国标准时间)] /admim/addCls
+TypeError: G:\nodejs\blog\views\admin\cls.html:43
+    41|                                    checked 
+    42|                                <% }
+ >> 43|                             } %>  value="true">解锁<%=cls.is_lock%>sds
+    44|                     </label>
+    45|                 </div>
+    46|             </div>
+
+Cannot read property 'is_lock' of null
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:93)
+    at eval (eval at <anonymous> (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:242:14), <anonymous>:31:1082)
+    at G:\nodejs\blog\node_modules\ejs\lib\ejs.js:255:15
+    at Object.exports.render (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:293:13)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:20)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at exports.showAdd (G:\nodejs\blog\controllers\cls.js:4:9)
+    at callbacks (G:\nodejs\blog\node_modules\express\lib\router\index.js:164:37)
+[Fri Oct 31 2014 12:22:03 GMT+0800 (中国标准时间)] /tab/sssaasasassaaas
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:689:11)
+    at ServerResponse.res.setHeader (G:\nodejs\blog\node_modules\express\node_modules\connect\lib\patch.js:134:22)
+    at ServerResponse.res.set.res.header (G:\nodejs\blog\node_modules\express\lib\response.js:583:10)
+    at ServerResponse.res.send (G:\nodejs\blog\node_modules\express\lib\response.js:144:12)
+    at fn (G:\nodejs\blog\node_modules\express\lib\response.js:829:10)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at G:\nodejs\blog\controllers\index.js:129:13
+[Fri Oct 31 2014 12:22:25 GMT+0800 (中国标准时间)] /tab/sssaasasassaaas
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:689:11)
+    at ServerResponse.res.setHeader (G:\nodejs\blog\node_modules\express\node_modules\connect\lib\patch.js:134:22)
+    at ServerResponse.res.set.res.header (G:\nodejs\blog\node_modules\express\lib\response.js:583:10)
+    at ServerResponse.res.send (G:\nodejs\blog\node_modules\express\lib\response.js:144:12)
+    at fn (G:\nodejs\blog\node_modules\express\lib\response.js:829:10)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at G:\nodejs\blog\controllers\index.js:129:13
+[Fri Oct 31 2014 12:22:41 GMT+0800 (中国标准时间)] /tab/sssaasasassaaas
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:689:11)
+    at ServerResponse.res.setHeader (G:\nodejs\blog\node_modules\express\node_modules\connect\lib\patch.js:134:22)
+    at ServerResponse.res.set.res.header (G:\nodejs\blog\node_modules\express\lib\response.js:583:10)
+    at ServerResponse.res.send (G:\nodejs\blog\node_modules\express\lib\response.js:144:12)
+    at fn (G:\nodejs\blog\node_modules\express\lib\response.js:829:10)
+    at View.exports.renderFile [as engine] (G:\nodejs\blog\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (G:\nodejs\blog\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (G:\nodejs\blog\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (G:\nodejs\blog\node_modules\express\lib\response.js:833:7)
+    at G:\nodejs\blog\controllers\index.js:129:13

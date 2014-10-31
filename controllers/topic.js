@@ -320,7 +320,7 @@ exports.showItem = function(req, res) {
         proxy.emit('count', count);
     });
 
-    Cls.getClsByQuery({}, function(err, cls) {
+    Cls.getClsByQuery({is_lock:true}, function(err, cls) {
         proxy.emit('cls', cls);
     });
 }
@@ -422,7 +422,7 @@ exports.showItem_address = function(req, res) {
 
     });
 
-    Cls.getClsByQuery({}, function(err, cls) {
+    Cls.getClsByQuery({is_lock:true}, function(err, cls) {
         proxy.emit('cls', cls);
     });
 }

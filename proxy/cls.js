@@ -51,10 +51,11 @@ exports.getClsByQuery = function(query, opt, callback) {
  * 创建并保存一条类别信息
  * @param {Function} callback 回调函数
  */
-exports.newAndSave = function(content,display_name, callback) {
+exports.newAndSave = function(content,display_name,is_lock, callback) {
     var cls = new Cls();
     cls.content = content;
     cls.display_name = display_name;
+    cls.is_lock = is_lock;
     exports.getMaxSort(function(err, sort) {
         cls.sort = sort + 1;
         cls.save(function(err) {

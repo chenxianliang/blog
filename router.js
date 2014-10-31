@@ -94,6 +94,10 @@ module.exports = function(app) {
     app.post('/admin/cls_edit',checkLogin);
     app.post('/admin/cls_edit',cls.saveEdit);
 
+    app.get('/admin/cls_remove/:id',checkLogin);
+    app.get('/admin/cls_remove/:id',cls.remove);
+
+
     //友链
     app.get('/admin/addLink',checkLogin);
     app.get('/admin/addLink',links.showAdd);
@@ -109,6 +113,9 @@ module.exports = function(app) {
 
     app.post('/admin/link_edit',checkLogin);
     app.post('/admin/link_edit',links.saveEdit);
+
+    app.get('/admin/link_remove/:id',checkLogin);
+    app.get('/admin/link_remove/:id',links.remove);
 
 
     //系统配置

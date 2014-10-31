@@ -18,6 +18,7 @@
                     <th>序号</th>
                     <th>名字</th>
                     <th>显示名字</th>
+                    <th>解锁</th>  
                     <th>排序</th>      
                     <th>操作</th>
                 </tr>
@@ -32,6 +33,7 @@
                         <td><%= index + 1 %></td>
                         <td><%= c.content%></td>
                         <td><%= c.display_name%></td>
+                        <td><%= c.is_lock ? '是' : '否'%></td>
                         <td><%= c.sort%></td>
                         <td>
                             <a href="/admin/cls_edit/<%=c.id%>"><i class="glyphicon glyphicon-edit"></i></a>
@@ -41,7 +43,7 @@
                 <% }) %>
                 <% if(cls.length == 0){ %>
                     <tr class="success">
-                        <td colspan="5" style="text-align:center;">当前没有数据...</td>
+                        <td colspan="6" style="text-align:center;">当前没有数据...</td>
                     </tr>
                 <% } %>
             </tbody>

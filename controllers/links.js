@@ -98,3 +98,21 @@ exports.saveEdit = function(req, res) {
         });
     })
 }
+
+exports.remove = function(req, res) {
+    var id = req.params.id;
+    Links.getLink(id, function(err, link) {
+        if (!link) {
+            req.flash('error', '链接已经不存在!');
+            res.redirect('back');
+        }
+        link.remove(function(err) {
+            if (err) {
+                req.flash('error', '删除失败!');
+                return res.redirect('back');
+            }
+            req.flash('success', '删除成功!');
+            res.redirect('back');
+        });
+    });
+}

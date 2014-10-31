@@ -97,7 +97,7 @@ exports.showIndex = function(req, res) {
         proxy.emit('count', count);
     });
 
-    Cls.getClsByQuery({}, function(err, cls) {
+    Cls.getClsByQuery({is_lock:true}, function(err, cls) {
         proxy.emit('cls', cls);
     });
 }
@@ -172,16 +172,16 @@ exports.showIndex_tab = function(req, res) {
         proxy.emit('message', message);
     });
 
-    Cls.getClsByQuery({}, function(err, cls) {
+    Cls.getClsByQuery({is_lock:true}, function(err, cls) {
         proxy.emit('cls', cls);
     });
 
     Cls.getClsByQuery({
         content: clsName
     }, function(err, cls) {
-        if (!cls.length) {
+        if (!cls.length || !cls[0].is_lock) {
             req.flash('error', '类别不存在');
-            res.redirect('/');
+            return res.redirect('/');
         }
         query.cls = cls[0]['_id'];
 
