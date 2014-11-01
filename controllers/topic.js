@@ -395,7 +395,7 @@ exports.showItem_address = function(req, res) {
         proxy.emit('author', author);
 
         if(!topic.out){
-            req.redirect('/');
+            return res.redirect('/');
         }
 
         if(req.session.user){
