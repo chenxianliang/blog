@@ -362,7 +362,9 @@ exports.showItem_address = function(req, res) {
         });
     });
 
-    Links.getLinksByQuery({}, {
+    Links.getLinksByQuery({
+        is_lock: true
+    }, {
         sort: '-sort'
     }, function(err, link) {
         proxy.emit('link', link);
