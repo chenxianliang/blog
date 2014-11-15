@@ -14,10 +14,10 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.log
-log/
+log/*.*
 新建文本文档.txt
-tmp/
-public/upload
+tmp/*.*
+public/upload/*
 
 
 # =========================
