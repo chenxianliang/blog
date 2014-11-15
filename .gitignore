@@ -13,6 +13,12 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+*.log
+log/
+新建文本文档.txt
+tmp/
+public/upload
+
 
 # =========================
 # Operating System Files
