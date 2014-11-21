@@ -196,4 +196,8 @@ $(function() {
         window.open(qqPreUrl + param, '_blank');
     });
 
+    $('.j-window').click(function(){
+        $('.main-body').toggleClass('all-window')
+    })
+
 });
