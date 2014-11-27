@@ -3,6 +3,7 @@ var Topic = require('../proxy/topic');
 var Reply = require('../proxy/reply');
 var models = require('../models');
 var getTime = require('../tool/getTime');
+var Mail = require('../tool/mail');
 var TopicModel = models.Topic;
 var ReplyModel = models.Reply;
 
@@ -50,6 +51,7 @@ exports.ajaxAdd = function(req, res) {
                     status: 1000,
                     msg: rep
                 };
+                Mail.replyMail(topic.title,req.headers.referer,content);
                 return res.send(out);
             });
         })

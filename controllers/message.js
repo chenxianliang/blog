@@ -3,6 +3,7 @@ var models = require('../models');
 var getTime = require('../tool/getTime');
 var EventProxy = require('eventproxy');
 var iphelp = require('../tool/ip');
+var Mail = require('../tool/mail');
 
 
 exports.blist = function(req,res){
@@ -65,6 +66,7 @@ exports.ajaxAdd = function(req,res){
             status: 1000,
             msg: message
         };
+        Mail.msgMail(message);
         res.send(out);
     });
 
