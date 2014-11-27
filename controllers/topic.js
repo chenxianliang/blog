@@ -278,7 +278,8 @@ exports.showItem = function(req, res) {
     });
 
     Message.getMessageByQuery({}, {
-        limit: require('../settings').message_page_count
+        limit: require('../settings').message_page_count,
+         sort: '-_id'
     }, function(err, message) {
         proxy.emit('message', message);
     });
@@ -383,7 +384,8 @@ exports.showItem_address = function(req, res) {
     });
 
     Message.getMessageByQuery({}, {
-        limit: require('../settings').message_page_count
+        limit: require('../settings').message_page_count,
+         sort: '-_id'
     }, function(err, message) {
         proxy.emit('message', message);
     });

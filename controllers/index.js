@@ -67,7 +67,8 @@ exports.showIndex = function(req, res) {
     });
 
     Message.getMessageByQuery({}, {
-        limit: require('../settings').message_page_count
+        limit: require('../settings').message_page_count,
+        sort: '-_id'
     }, function(err, message) {
         proxy.emit('message', message);
     });
@@ -169,7 +170,8 @@ exports.showIndex_tab = function(req, res) {
     });
 
     Message.getMessageByQuery({}, {
-        limit: require('../settings').message_page_count
+        limit: require('../settings').message_page_count,
+         sort: '-_id'
     }, function(err, message) {
         proxy.emit('message', message);
     });

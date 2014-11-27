@@ -66,7 +66,7 @@ exports.ajaxAdd = function(req,res){
             status: 1000,
             msg: message
         };
-        Mail.msgMail(message);
+        Mail.msgMail(message.content);
         res.send(out);
     });
 
