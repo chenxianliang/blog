@@ -2,6 +2,7 @@ var models = require('../models');
 var Reply = models.Reply;
 var EventProxy = require('eventproxy');
 var User = require('./user');
+var getTime  = require('../tool/getTime');
 
 
 /**
@@ -154,6 +155,8 @@ exports.newAndSave = function(content, topicId, authorId, ip, replyId, callback)
     reply.content = content.replace(/\</g, '&lt').replace(/\>/g, '&gt');
     reply.topic_id = topicId;
     reply.author_id = authorId;
+    reply.create_at = getTime();
+    reply.update_at = getTime();
     reply.ip = ip;
     if (replyId) {
         reply.reply_id = replyId;

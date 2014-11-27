@@ -1,6 +1,7 @@
 var models = require('../models');
 var Links = models.Links;
 var EventProxy = require('eventproxy');
+var getTime  = require('../tool/getTime');
 
 
 /**
@@ -56,6 +57,8 @@ exports.newAndSave = function(url , name , is_lock , callback) {
     links.url = url;
     links.name = name;
     links.is_lock = is_lock;
+    links.create_at = getTime();
+    links.update_at = getTime();
     exports.getMaxSort(function(err, sort) {
         links.sort = sort + 1;
         links.save(function(err) {

@@ -4,7 +4,7 @@ var Topic = models.Topic;
 var User = require('./user');
 var Reply = require('./reply');
 var Cls = require('./cls');
-
+var getTime  = require('../tool/getTime');
 
 /**
  * 根据主题ID获取主题
@@ -245,5 +245,7 @@ exports.newAndSave = function (obj,callback) {
   topic.arrow_replay = obj.arrow_replay;
   topic.out = obj.out;
   topic.preview = obj.preview;
+  topic.create_at = getTime();
+  topic.update_at = getTime();
   topic.save(callback);
 };

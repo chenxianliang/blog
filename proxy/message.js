@@ -1,6 +1,7 @@
 var models = require('../models');
 var Message = models.Message;
 var EventProxy = require('eventproxy');
+var getTime  = require('../tool/getTime');
 
 
 /**
@@ -47,6 +48,8 @@ exports.newAndSave = function (content, ip, author ,callback) {
   msg.content = content.replace(/\</g,'&lt').replace(/\>/g,'&gt');
   msg.ip = ip;
   msg.author = author;
+  msg.create_at = getTime();
+  msg.update_at = getTime();
   
   msg.save(function (err) {
     callback(err, msg);
