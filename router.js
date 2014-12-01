@@ -6,7 +6,8 @@ var user = require('./controllers/user'),
     config = require('./controllers/config'),
     message = require('./controllers/message'),
     links = require('./controllers/links'),
-    cls = require('./controllers/cls');
+    cls = require('./controllers/cls'),
+    demo = require('./controllers/demo');
 
 module.exports = function(app) {
 
@@ -138,6 +139,11 @@ module.exports = function(app) {
     app.post('/ajax/reply_add', reply.ajaxAdd);
     app.get('/ajax/more_reply', reply.ajaxload);
     app.post('/ajax/message_add',message.ajaxAdd);
+
+
+    //抽奖ajax
+    app.get('/ajax/demo/lottery',demo.lottery);
+    
 
 
     app.use(function (req, res) {

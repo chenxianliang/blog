@@ -43,7 +43,9 @@ app.use(express.session({
   })
 }));
 app.use(app.router);
+app.use(express.static(path.join(__dirname, 's')));
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(function (err, req, res, next) {
   var meta = '[' + new Date() + '] ' + req.url + '\n';
   errorLog.write(meta + err.stack + '\n');
