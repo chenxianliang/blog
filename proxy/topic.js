@@ -245,6 +245,8 @@ exports.newAndSave = function (obj,callback) {
   topic.arrow_replay = obj.arrow_replay;
   topic.out = obj.out;
   topic.preview = obj.preview;
+  topic.keyword = obj.keyword;
+  topic.description = obj.description;
   topic.create_at = getTime();
   topic.update_at = getTime();
   topic.save(callback);

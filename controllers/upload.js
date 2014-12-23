@@ -10,8 +10,7 @@ exports.img = function(req, res) {
     var target_path = path.join(BASENAME, '/public/upload/short/' + fileName);
     fs.rename(req.files.file.path, target_path, function(err) {
         if (err) {
-            return console.log(err);
-            res.send('error');
+            return res.send('error');
         }
         res.send('/upload/short/' + fileName);
     })

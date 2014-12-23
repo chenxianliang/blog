@@ -9,6 +9,8 @@ var ClsSchema = new Schema({
   display_name: { type: String },
   is_lock:{type:Boolean,default:true},
   sort:{type:Number},
+  keyword : {type:String},
+  description : {type:String}
 });
 
 ClsSchema.index({sort: 1});

@@ -23,6 +23,8 @@ var TopicSchema = new Schema({
 	  cls : {type:String},
 	  out : {type:Boolean,default : true},
 	  preview : {type:String},
+	  keyword : {type:String},
+  	  description : {type:String},
 });
 
 TopicSchema.index({create_at: -1});

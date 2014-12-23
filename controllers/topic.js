@@ -52,7 +52,9 @@ exports.add = function(req, res) {
         arrow_reply: req.body.arrow_reply,
         cls: req.body.cls,
         out: req.body.out,
-        preview: req.body.preview
+        preview: req.body.preview,
+        keyword: req.body.keyword || '',
+        description : req.body.description || ''
     }
 
     if (!oTopic.title || !oTopic.cls || !oTopic.content) {
@@ -168,7 +170,9 @@ exports.saveEdit = function(req, res) {
         cls: req.body.cls,
         out: req.body.out || false,
         update_at: getTime(),
-        preview: req.body.preview
+        preview: req.body.preview,
+        keyword : req.body.keyword || '',
+        description : req.body.description || ''
     }
     if (!oTopic.title || !oTopic.cls || !oTopic.content) {
         req.flash('error', '有必要信息未填!');
@@ -254,6 +258,7 @@ exports.showItem = function(req, res) {
             keyword: '',
             isHome: false,
             tab: null,
+            siteInfo:null,
             cls: cls,
             user: req.session.user,
             success: req.flash('success').toString(),
@@ -322,7 +327,7 @@ exports.showItem = function(req, res) {
         proxy.emit('count', count);
     });
 
-    Cls.getClsByQuery({is_lock:true}, function(err, cls) {
+    Cls.getClsByQuery({is_lock:true},{sort: 'sort'}, function(err, cls) {
         proxy.emit('cls', cls);
     });
 }
@@ -356,6 +361,7 @@ exports.showItem_address = function(req, res) {
             keyword: '',
             isHome: false,
             tab: null,
+            siteInfo:null,
             cls: cls,
             user: req.session.user,
             success: req.flash('success').toString(),
@@ -428,7 +434,7 @@ exports.showItem_address = function(req, res) {
 
     });
 
-    Cls.getClsByQuery({is_lock:true}, function(err, cls) {
+    Cls.getClsByQuery({is_lock:true},{sort: 'sort'}, function(err, cls) {
         proxy.emit('cls', cls);
     });
 }

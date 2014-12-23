@@ -8,5 +8,7 @@ module.exports = {
     "message_page_count":"15",
     "adminPage": "20",
     "author": "风色幻想",
-    "qq": "464896740"
+    "qq": "464896740",
+    "keyword":"关键字",
+    "description":"描述"
 }

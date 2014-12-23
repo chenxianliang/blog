@@ -25,6 +25,10 @@ exports.showIndex = function(req, res) {
     page = page > 0 ? page : 1;
     var keyword = req.query.keyword ? req.query.keyword : '';
     var queryDate = req.params.date;
+    var siteInfo = {
+        keyword : require('../settings').keyword,
+        description : require('../settings').description
+    };
 
     var options = {
         skip: (page - 1) * once,
@@ -56,6 +60,7 @@ exports.showIndex = function(req, res) {
             isHome: true,
             isDetail:false,
             tab: null,
+            siteInfo:siteInfo,
             page: page,
             isFirstPage: (page - 1) == 0,
             isLastPage: Math.ceil(count / once) == page,
@@ -99,7 +104,7 @@ exports.showIndex = function(req, res) {
         proxy.emit('count', count);
     });
 
-    Cls.getClsByQuery({is_lock:true}, function(err, cls) {
+    Cls.getClsByQuery({is_lock:true},{sort: 'sort'}, function(err, cls) {
         proxy.emit('cls', cls);
     });
 }
@@ -141,6 +146,7 @@ exports.showIndex_tab = function(req, res) {
             isDetail:false,
             isHome: false,
             tab: clsName,
+            siteInfo:null,
             isFirstPage: (page - 1) == 0,
             isLastPage: Math.ceil(count / once) == page,
             pageCount: Math.ceil(count / once),
@@ -176,7 +182,8 @@ exports.showIndex_tab = function(req, res) {
         proxy.emit('message', message);
     });
 
-    Cls.getClsByQuery({is_lock:true}, function(err, cls) {
+    Cls.getClsByQuery({is_lock:true},{sort: 'sort'}, function(err, cls) {
+        console.log(cls);
         proxy.emit('cls', cls);
     });
 

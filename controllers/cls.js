@@ -15,7 +15,9 @@ exports.add = function(req, res) {
     var content = req.body.content;
     var display_name = req.body.display_name;
     var is_lock = req.body.is_lock  || false;
-    Cls.newAndSave(content,display_name,is_lock, function(err, obj) {
+    var keyword = req.body.keyword || '';
+    var description = req.body.description || '';
+    Cls.newAndSave(content,display_name,is_lock, keyword,description,function(err, obj) {
         if (err) {
             req.flash('error', '保存失败!');
             return res.redirect('back');
@@ -68,7 +70,9 @@ exports.saveEdit = function(req,res){
     var oCls = {
         content: req.body.content,
         display_name:req.body.display_name,
-        is_lock:req.body.is_lock || false
+        is_lock:req.body.is_lock || false,
+        keyword: req.body.keyword || '',
+        description: req.body.description || ''
     }
     if (!oCls.content) {
         req.flash('error', '有必要信息未填!');
