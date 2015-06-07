@@ -4,6 +4,7 @@
 *.msp
 *.log
 config.js
+settings.js
 log/*.*
 tmp/*.*
 public/upload/
