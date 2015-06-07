@@ -11,11 +11,34 @@
 <footer>
     作者：<%= sys.author %> &nbsp;&nbsp;&nbsp;&nbsp;QQ：<%= sys.qq %>&nbsp;&nbsp;&nbsp;&nbsp;备案号：<a href="http://www.miitbeian.gov.cn/" target="_blank">浙ICP备14038424号</a>
 </footer>
+<script src="/js/svg.js"></script>
+    <script src="/js/d3.js"></script>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F87d468e4e6a03e45b864f6bd534de4e4' type='text/javascript'%3E%3C/script%3E"));
 </script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253574815'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1253574815%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+<script>
+    var t = new Trianglify({
+        noiseIntensity: 0,
+        color: 'blue'
+    });
+    redraw();
 
+    $(window).on('resize',redraw);
+
+    function height() {
+        return Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight,
+            document.body.clientHeight, document.documentElement.clientHeight
+        );
+    }
+    function redraw() {
+        var pattern = t.generate(document.body.clientWidth, height());
+        $('body').css('style', 'background-image: ' + pattern.dataUrl)
+        document.body.setAttribute('style', 'background-image: ' + pattern.dataUrl);
+    };    
+</script>
 </body>
 </html>

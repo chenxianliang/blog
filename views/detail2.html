@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>dsadsa</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="/assets/css/amazeui.min.css" />
+    <style>
+    @media only screen and (min-width: 1200px) {
+        .blog-g-fixed {
+            max-width: 1200px;
+        }
+    }
+    
+    @media only screen and (min-width: 641px) {
+        .blog-sidebar {
+            font-size: 1.4rem;
+        }
+    }
+    
+    .blog-main {
+        padding: 20px 0;
+    }
+    
+    .blog-title {
+        margin: 10px 0 20px 0;
+    }
+    
+    .blog-meta {
+        font-size: 14px;
+        margin: 10px 0 20px 0;
+        color: #222;
+    }
+    
+    .blog-meta a {
+        color: #27ae60;
+    }
+    
+    .blog-pagination a {
+        font-size: 1.4rem;
+    }
+    
+    .blog-team li {
+        padding: 4px;
+    }
+    
+    .blog-team img {
+        margin-bottom: 0;
+    }
+    
+    .blog-content img,
+    .blog-team img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .blog-footer {
+        padding: 10px 0;
+        text-align: center;
+    }
+    </style>
+</head>
+
+<body>
+    <%- include v2_header.html %>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        
+        
+    </div>
+    <script src="/js/svg.js"></script>
+    <script src="/js/d3.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/amazeui.min.js"></script>
+    <script>
+    var t = new Trianglify({
+        noiseIntensity: 0,
+        color: 'blue'
+    });
+    redraw();
+
+    window.onresize = function() {
+        redraw();
+    };
+
+    function height() {
+        return Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight,
+            document.body.clientHeight, document.documentElement.clientHeight
+        );
+    }
+
+    function redraw() {
+        var pattern = t.generate(document.body.clientWidth, height());
+        //document.body.setAttribute('style', 'background-image: ' + pattern.dataUrl);
+    };
+    </script>
+</body>
+
+</html>
